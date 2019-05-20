@@ -1,23 +1,23 @@
-//import { getInitialData } from '../utils/api'
-//import { receiveUsers } from '../actions/users'
-//import { setAuthedUser } from '../actions/authedUser'
-import { showLoading/*, hideLoading*/ } from 'react-redux-loading'
 
-//const AUTHED_ID = 'camilasales'
+import { getAll } from '../utils/api'
+import { receivePosts } from '../actions/posts'
+import { showLoading, hideLoading } from 'react-redux-loading'
 
 export function handleInitialData () {
   return (dispatch) => {
     dispatch(showLoading())
-
-    /*
-    return getInitialData()
-      .then(({ users, tweets }) => {
-        dispatch(receiveUsers(users))
-        //dispatch(receiveTweets(posts))
-        //dispatch(receiveTweets(comments))
-        dispatch(setAuthedUser(AUTHED_ID))
+    console.log('getAll the posts.')
+    return getAll()
+      .then(({ posts }) => {
+        dispatch(receivePosts(posts))
+        console.log('Retornou os posts.')
+        console.log('Posts: ', posts)
         dispatch(hideLoading())
       })
-    */
+      .catch((e) => {
+        console.warn('Error in getAll: ', e)
+        dispatch(hideLoading())
+        alert('The was an error getting the posts. Try again.')
+      })
   }
 }

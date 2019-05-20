@@ -8,11 +8,14 @@ class Dashboard extends Component {
     return (
       <div>
         <h3 className='center'>Your Timeline</h3>
-        <ul className='dashboard-list'>
-          <li key='0'>
-            <Post id='0'/>
-          </li>
-        </ul>
+
+          {/*this.props.posts.map((post, i) => (
+            <li key={i}>
+              {console.log(post)}
+            </li>
+          ))*/}
+                  
+          <Post id='0'/>
       </div>
     )
   }
