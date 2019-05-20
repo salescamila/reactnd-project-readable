@@ -1,7 +1,5 @@
 
-const api = "http://localhost"
-//const api = "https://reactnd-books-api.udacity.com"
-
+const api = "http://localhost:3001"
 
 // Generate a unique token for storing your bookshelf data on the backend server.
 let token = localStorage.token
@@ -9,44 +7,44 @@ if (!token)
   token = localStorage.token = Math.random().toString(36).substr(-8)
 
 const headers = {
-  'Authorization': "token"
+  'Authorization': "wahtever"
 }
 
 //Get all of the categories available for the app
 export const _getAllCategories = () =>
   fetch(`${api}/categories`, { headers })
     .then(res => res.json())
-    .then(data => data.categories)
+    .then(categories => categories)
 
 //Get all of the posts for a particular category
 export const _getGategory = (category) =>
   fetch(`${api}/${category}/posts`, { headers })
     .then(res => res.json())
-    .then(data => data.posts)
+    .then(category => category)
 
 //Get all of the posts
 export const _getAll = () =>
   fetch(`${api}/posts`, { headers })
     .then(res => res.json())
-    .then(data => data.posts)
+    .then(posts => posts)
 
 //Get the details of a single post
 export const _getPost = (postId) =>
   fetch(`${api}/posts/${postId}`, { headers })
     .then(res => res.json())
-    .then(data => data.post)
+    .then(post => post)
 
 //Get all the comments for a single post
 export const _getAllComments = (postId) =>
   fetch(`${api}/posts/${postId}/comments`, { headers })
     .then(res => res.json())
-    .then(data => data.comments)
+    .then(comments => comments)
 
 //Get the details for a single comment
 export const _getComment = (commentId) =>
   fetch(`${api}/comments/${commentId}`, { headers })
     .then(res => res.json())
-    .then(data => data.comment)
+    .then(comment => comment)
 
 
 
