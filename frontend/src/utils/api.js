@@ -1,12 +1,23 @@
 import {
   _getAllCategories, 
   _getGategory, 
-  _getAll, 
+  _getAllPosts, 
   _getPost,
   _getAllComments,
   _getComment,
 } from './_DATA.js'
 
+export function getInitialData () {
+  return Promise.all([
+    _getAllCategories(),
+    _getAllPosts(),
+    _getAllComments(),
+  ]).then(([categories, posts, comments]) => ({
+    categories, 
+    posts,
+    comments,
+  }))
+}
 export function getAllCategories () {
   return Promise.all([
     _getAllCategories(),
@@ -23,9 +34,9 @@ export function getCategory (categoryId) {
   }))
 }
 
-export function getAll () {
+export function getAllPosts () {
   return Promise.all([
-    _getAll(),
+    _getAllPosts(),
   ]).then(([posts]) => ({
     posts
   }))

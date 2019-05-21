@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { formatDate } from '../utils/helpers'
 
 class Post extends Component {
@@ -18,12 +18,13 @@ class Post extends Component {
     }
         
     const {
-      author, commentCount, timestamp, title, voteScore
+      id, author, commentCount, timestamp, title, voteScore
     } = post
 
     return(
       <div>
         <p>Title: {title}</p>
+        <Link to={`/post/${id}`}>Mais informações</Link>
         <div>{formatDate(timestamp)}</div>
         <p>Author: {author}</p>
         <p>Total Comments: {commentCount}</p>

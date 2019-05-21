@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import Post from './Post'
 import NewPost from './NewPost'
 
@@ -23,4 +24,11 @@ class PostPage extends Component {
   }
 }
 
-export default connect()(PostPage)
+function mapStateToProps ( {posts} ) {
+  return{
+    posts
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(PostPage))
+

@@ -13,20 +13,17 @@ class Category extends Component {
             Teste de categoria
             </li>
         </ul>
+
+        {console.log(this.props)}
       </div>
     )
   }
 }
-/*
-function mapStateToProps ({ authedUser, tweets, users }, props) {
-  const { id } = props.match.params
 
+function mapStateToProps ( { props }) {
   return {
-    id,
-    replies: !tweets[id]
-      ? []
-      : tweets[id].replies.sort((a,b,) => tweets[b].timestamp - tweets[a].timestamp)
+    categories: props
   }
 }
-*/
-export default connect()(Category)
+
+export default connect(mapStateToProps)(Category)
