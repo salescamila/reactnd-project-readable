@@ -15,16 +15,18 @@ class Post extends Component {
     if (post === null) {
       return <p>Essa postagem não existe.</p>
     }
+    const {
+      title, author, voteScore
+    } = post
+
+    console.warn(post);
 
     return(
       <div>
-        <h1>Project Readable</h1>
-        <h2>Título</h2>
-        <h3>Autor</h3>
-        <p>Número de Comentários</p>
-        <p>Pontuação</p>
+        <span>{title}</span>
+        <p>{author}</p>
+        <p>Número de Comentários: {voteScore}</p>
         <p>Votação Up/Down</p>
-        <p>Detalhes</p>
       </div>
     )
   }

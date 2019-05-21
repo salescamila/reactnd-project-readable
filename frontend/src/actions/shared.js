@@ -10,7 +10,6 @@ export function handleInitialData () {
     return getAll()
       .then(({ posts }) => {
         dispatch(receivePosts(posts))
-        console.log('Posts: ', posts)
         dispatch(hideLoading())
       })
       .catch((e) => {
