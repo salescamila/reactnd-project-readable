@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { formatDate } from '../utils/helpers'
 
 class Post extends Component {
   handleLike = (e) => {
@@ -15,21 +16,31 @@ class Post extends Component {
     if (post === null) {
       return <p>Essa postagem não existe.</p>
     }
+        
     const {
-      title, author, voteScore
+      author, commentCount, timestamp, title, voteScore
     } = post
-
-    console.warn(post);
 
     return(
       <div>
-        <span>{title}</span>
-        <p>{author}</p>
-        <p>Número de Comentários: {voteScore}</p>
+        <p>Title: {title}</p>
+        <div>{formatDate(timestamp)}</div>
+        <p>Author: {author}</p>
+        <p>Total Comments: {commentCount}</p>
+        <p>Score: {voteScore}</p>
         <p>Votação Up/Down</p>
+        <br></br>
       </div>
     )
   }
 }
 
-export default withRouter(connect()(Post))
+function mapStateToProps ({posts}, { id }) {
+  return{
+    post: id
+      ? posts[id]
+      : null
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(Post))
