@@ -9,6 +9,8 @@ class PostPage extends Component {
     const { id, replies } = this.props
     return (
       <div>
+        <h3>Detalhes da Postagem</h3>
+        {/*
         <Post id={id} />
         <NewPost id={id} />
         {replies.length !== 0 && <h3 className='center'>Replies</h3>}
@@ -19,6 +21,7 @@ class PostPage extends Component {
             </li>
           ))}
         </ul>
+        */}
       </div>
     )
   }
