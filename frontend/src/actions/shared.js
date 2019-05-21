@@ -6,12 +6,10 @@ import { showLoading, hideLoading } from 'react-redux-loading'
 export function handleInitialData () {
   return (dispatch) => {
     dispatch(showLoading())
-    console.log('getAll the posts.')
-    
+
     return getAll()
       .then(({ posts }) => {
         dispatch(receivePosts(posts))
-        console.log('Retornou os posts.')
         console.log('Posts: ', posts)
         dispatch(hideLoading())
       })

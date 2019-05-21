@@ -8,25 +8,26 @@ class Dashboard extends Component {
     return (
       <div>
         <h3 className='center'>Your Timeline</h3>
+          {this.props.postIds}
 
-          {/*this.props.posts.map((post, i) => (
+          { this.props.postIds.map((post, i) => (
             <li key={i}>
+              algo aqui {post}
               {console.log(post)}
             </li>
-          ))*/}
+          ))}
                   
-          <Post id='0'/>
+          <Post />
       </div>
     )
   }
 }
-/*
+
 function mapStateToProps ({ posts }) {
   return {
     postIds: Object.keys(posts)
       .sort((a,b) => posts[b].timestamp - posts[a].timestamp)
   }
 }
-*/
 
-export default connect()(Dashboard)
+export default connect(mapStateToProps)(Dashboard)
