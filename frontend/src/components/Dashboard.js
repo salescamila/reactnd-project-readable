@@ -4,34 +4,61 @@ import Post from './Post'
 
 class Dashboard extends Component {
   state = {
-    orderByData: true,
+    orderBy: 'data',
+    postsIds: null,
   }
 
+  orderByDate = () => {
+    if (this.props.posts !== null) {
+      this.setState(() => ({
+        orderBy: 'date',
+        postsIds: Object.keys(this.props.posts).sort((a,b) => this.props.posts[b].timestamp - this.props.posts[a].timestamp)
+      }))
+    }
+  }
+  orderByScore = () => {
+    if (this.props.posts !== null) {
+      this.setState(() => ({
+        orderBy: 'score',
+        postsIds: Object.keys(this.props.posts).sort((a,b) => this.props.posts[b].voteScore - this.props.posts[a].voteScore)
+      }))
+    }
+  }
   render () {
+    if(this.state.postsIds === null && this.props.posts !== null) {
+      this.orderByDate()
+    }
     return (
       <div>
         <h3 className='center'>Your Timeline</h3>
-        {this.props.postsIds.map((id) => (
-          <Post id={id}/>
-        ))}
+        <div>Select a order to show the posts...</div>
+        <button
+          className='btn'
+          type='button'
+          onClick={this.orderByDate}>
+          Order By Date
+        </button>
+        <button
+          className='btn'
+          type='button'
+          onClick={this.orderByScore}>
+          Order By Vote Score
+        </button>
+        {
+          this.state.postsIds === null
+          ? <div>Select Ordernation</div>
+          : this.state.postsIds.map((id) => (
+            <Post id={id}/>
+            ))
+        }
       </div>
     )
   }
 }
 
 function mapStateToProps ({ posts }) {
-  
-  console.log('ordernação... ', this.state)
   return {
-    postsIds: 
-      Object.keys(posts)
-      .sort((a,b) => posts[b].voteScore - posts[a].voteScore)
-      /*orderByData
-      ? Object.keys(posts)
-        .sort((a,b) => posts[b].timestamp - posts[a].timestamp)
-      : Object.keys(posts)
-        .sort((a,b) => posts[b].voteScore - posts[a].voteScore)
-      */
+    posts: posts
   }
 }
 
