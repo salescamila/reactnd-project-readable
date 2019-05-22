@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import Post from './Post'
-import NewPost from './NewPost'
 
 class PostPage extends Component {
   render() {
-    const { id, replies } = this.props
+    console.log('passou aqui... postagem')
     return (
       <div>
         <h3>Detalhes da Postagem</h3>

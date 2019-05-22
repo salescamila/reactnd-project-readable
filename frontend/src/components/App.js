@@ -7,6 +7,7 @@ import LoadingBar from 'react-redux-loading'
 import NewPost from './NewPost'
 import PostPage from './PostPage'
 import Category from './Category'
+import CategoryPosts from './CategoryPosts'
 import Nav from './Nav';
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
                   <Route path='/' exact component={Dashboard} />
                   <Route path='/post/:id' exact component={PostPage} />
                   <Route path='/category' exact component={Category} />
+                  <Route path='/:category/posts' exact component={CategoryPosts} />
                   <Route path='/newPost' exact component={NewPost} />
                 </div>}
           </div>
@@ -35,12 +37,12 @@ class App extends Component {
   }
 }
 
-/*
-function mapStateToProps ({ authedUser }) {
+
+function mapStateToProps ({ posts }) {
   return {
-    loading: authedUser === null
+    loading: posts === null
   }
 }
-*/
 
-export default connect(/*mapStateToProps*/)(App)
+
+export default connect(mapStateToProps)(App)
