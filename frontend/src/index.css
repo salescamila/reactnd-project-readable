@@ -83,6 +83,10 @@ li {
   text-decoration: none;
 }
 
+.link {
+  text-decoration: underline;
+}
+
 .avatar {
   height: 50px;
   border-radius: 25px;
@@ -97,7 +101,6 @@ li {
   margin: 0 auto;
   border: 1px solid #dad7d7;
   border-radius: 3px;
-  cursor: pointer;
 }
 
 .tweet-info {

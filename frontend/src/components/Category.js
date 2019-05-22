@@ -11,8 +11,8 @@ class Category extends Component {
 
     return (
       <div>
-        <h3><u>Lista de Categorias das Postagens.</u></h3>
-        <ul>
+        <h3>Lista de Categorias das Postagens.</h3>
+        <ul className='link'>
             {categories
               ? categories.map((c, i) => { 
                 return <li key={i}><Link to={`/category/${c.path}`}>{c.name}</Link></li> 

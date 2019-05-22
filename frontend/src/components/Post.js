@@ -22,15 +22,15 @@ class Post extends Component {
     } = post
 
     return(
-      <div>
-        <p>Title: {title}</p>
-        <Link to={`/post/${id}`}>Mais informações</Link>
-        <div>{formatDate(timestamp)}</div>
-        <p>Author: {author}</p>
-        <p>Total Comments: {commentCount}</p>
-        <p>Score: {voteScore}</p>
-        <p>Votação Up/Down</p>
-        <br></br>
+      <div className='tweet'>
+          <div className='tweet-info'>
+            <Link to={`/post/${id}`}><p className='link'>Title: {title}</p></Link>
+            <span>{formatDate(timestamp)}</span>
+            <span>Author: {author}</span>
+            <span>Total Comments: {commentCount}</span>
+            <span>Score: {voteScore}</span>
+            <span>Votação Up/Down</span>
+          </div>
       </div>
     )
   }
