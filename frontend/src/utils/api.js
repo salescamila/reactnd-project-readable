@@ -42,7 +42,7 @@ export function getAllPosts () {
   }))
 }
 
-export function getPost (postId) {
+export function getSinglePost (postId) {
   return Promise.all([
     _getPost(postId),
   ]).then(([post]) => ({

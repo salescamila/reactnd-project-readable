@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { getPost } from '../actions/posts'
+import Post from './Post'
 
 class PostPage extends Component {
+  componentDidMount() {
+    this.props.dispatch(getPost(this.props.id));
+  }
   render() {
-    console.log('passou aqui... postagem')
+    const { id } = this.props.match.params
     return (
       <div>
         <h3>Detalhes da Postagem</h3>
-        {/*
+        {
         <Post id={id} />
-        <NewPost id={id} />
+        /*<NewPost id={id} />
         {replies.length !== 0 && <h3 className='center'>Replies</h3>}
         <ul>
           {replies.map((replyId) => (
@@ -25,11 +29,14 @@ class PostPage extends Component {
   }
 }
 
-function mapStateToProps ( {posts} ) {
+function mapStateToProps ( {posts}, props ) {
+  const { id } = props.match.params
+
   return{
-    posts
+    id: posts.filter((p) => (p.id === id)),
+    post: posts
   }
 }
 
-export default withRouter(connect(mapStateToProps)(PostPage))
+export default connect(mapStateToProps)(PostPage)
 
