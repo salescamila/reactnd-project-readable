@@ -1,5 +1,6 @@
 import { showLoading, hideLoading } from 'react-redux-loading'
 import { getAllPosts, getSinglePost } from '../utils/api'
+import { receiveComments } from '../actions/comments'
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const RECEIVE_SINGLE_POST = 'RECEIVE_SINGLE_POST'
@@ -23,8 +24,9 @@ export function getPost (id) {
     dispatch(showLoading())
 
     return getSinglePost(id)
-      .then(({ singlePost }) => {
+      .then(({ singlePost, comments }) => {
         dispatch(receiveSinglePost(singlePost))
+        dispatch(receiveComments(comments))
         dispatch(hideLoading())
       })
       .catch((e) => {

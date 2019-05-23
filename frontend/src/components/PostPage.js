@@ -10,7 +10,7 @@ class PostPage extends Component {
   }
   render() {
     //let idPost
-    const { id, post, singlePost } = this.props
+    const { post } = this.props
 
     if (post === null) {
       console.log('post filtrado 1...', this.props)
@@ -59,18 +59,14 @@ class PostPage extends Component {
   }
 }
 
-function mapStateToProps ( {posts, singlePost}, props ) {
+function mapStateToProps ( {posts}, props ) {
   const { id } = props.match.params
 
   return{
     id: id,
     post: posts
       ? posts
-      : null,
-    singlePost: singlePost
-      ? singlePost
       : null
-   // posts: posts
   }
 }
 

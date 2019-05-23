@@ -18,6 +18,7 @@ export function getInitialData () {
     comments
   }))
 }
+
 export function getAllCategories () {
   return Promise.all([
     _getAllCategories(),
@@ -45,8 +46,10 @@ export function getAllPosts () {
 export function getSinglePost (postId) {
   return Promise.all([
     _getPost(postId),
-  ]).then(([singlePost]) => ({
-    singlePost
+    _getAllComments(postId),
+  ]).then(([singlePost, comments]) => ({
+    singlePost,
+    comments
   }))
 }
 
