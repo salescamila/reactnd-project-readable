@@ -9,7 +9,8 @@ class Dashboard extends Component {
     postsIds: null,
   }
   componentDidMount() {
-    this.props.dispatch(getPosts());
+    this.props.dispatch(getPosts())
+    this.orderByDate()
   }
   orderByDate = () => {
     if (this.props.posts !== null) {
@@ -39,8 +40,7 @@ class Dashboard extends Component {
     }
   }
   render () {
-
-    if(this.state.postsIds === null && this.props.posts !== null) {
+    if(this.state.postsIds === null) {
       this.orderByDate()
     }
     return (
@@ -63,7 +63,7 @@ class Dashboard extends Component {
           this.state.postsIds === null
           ? <div>Select Ordernation</div>
           : this.state.postsIds.map((id) => (
-              <Post id={id}/>
+              <Post id={id} dashboard={true}/>
             ))
         }
       </div>
@@ -74,6 +74,8 @@ class Dashboard extends Component {
 function mapStateToProps ({ posts }) {
   return {
     posts: posts
+     ? posts
+     : null
   }
 }
 

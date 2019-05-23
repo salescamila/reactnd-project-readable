@@ -30,8 +30,8 @@ export function getAllCategories () {
 export function getCategory (categoryId) {
   return Promise.all([
     _getGategory(categoryId),
-  ]).then(([posts]) => ({
-    posts
+  ]).then(([categoryPosts]) => ({
+    categoryPosts
   }))
 }
 

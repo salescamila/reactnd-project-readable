@@ -14,12 +14,11 @@ export function receiveSinglePost (singlePost) {
 export function getPost (id) {
   return (dispatch) => {
     dispatch(showLoading())
+
     return getSinglePost(id)
       .then(({ post, comments }) => {
         dispatch(receiveSinglePost(post))
         dispatch(receiveComments(comments))
-        console.log('getSinglePost...', post)
-        console.log('getSinglePost comments...', comments)
         dispatch(hideLoading())
       })
       .catch((e) => {

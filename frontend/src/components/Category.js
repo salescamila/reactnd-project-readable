@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { getCategories } from '../actions/categories';
 
 class Category extends Component {
@@ -20,7 +20,7 @@ class Category extends Component {
         <ul className='link'>
             {categories
               ? categories.map((c, i) => {
-                return <li key={i}><Link to={`/category/${c.path}`}>{c.name}</Link></li>
+                return <li key={i}><Link to={`/${c.path}/posts`}>{c.name}</Link></li>
                 })
               : null
             }
@@ -38,4 +38,4 @@ function mapStateToProps ({ categories }) {
   }
 }
 
-export default connect(mapStateToProps)(Category)
+export default withRouter(connect(mapStateToProps)(Category))

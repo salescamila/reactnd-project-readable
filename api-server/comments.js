@@ -23,6 +23,16 @@ const defaultData = {
     voteScore: -5,
     deleted: false,
     parentDeleted: false
+  },
+  "8ca1bsun805n8un48zz00": {
+    id: '8ca1bsun805n8un48zz00',
+    parentId: "6ni6ok3ym7mf1p33lnez",
+    timestamp: 1469479767190,
+    body: 'One more comment as exemple',
+    author: 'camila sales',
+    voteScore: 4,
+    deleted: false,
+    parentDeleted: false
   }
 }
 

@@ -18,10 +18,10 @@ class Comment extends Component {
     }
     console.log('comentário props...',this.props)
     const {
-      id, author, body, deleted, parentDeleted, parentId, timestamp, voteScore
+      author, body, deleted, parentDeleted, parentId, timestamp, voteScore
     } = comment
 
-    if (postId === parentId) {
+    if ( (postId === parentId) && (deleted) && (parentDeleted) ){
       return (
         <div className='tweet'>
           <div className='tweet-info'>

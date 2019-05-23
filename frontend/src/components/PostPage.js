@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getPost } from '../actions/singlePost'
-import { Link, withRouter } from 'react-router-dom'
 import { formatDate } from '../utils/helpers'
 import Comment from './Comment'
 

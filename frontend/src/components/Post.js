@@ -36,11 +36,19 @@ class Post extends Component {
   }
 }
 
-function mapStateToProps ({posts}, { id }) {
-  return{
-    post: posts
-      ? posts[id]
-      : null
+function mapStateToProps ({posts, categoryPosts}, { id, dashboard }) {
+  if ( dashboard ) {
+    return{
+      post: posts
+        ? posts[id]
+        : null
+    }
+  } else {
+    return{
+      post: categoryPosts
+        ? categoryPosts[id]
+        : null
+    }
   }
 }
 
