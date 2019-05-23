@@ -3,14 +3,14 @@ import { connect } from 'react-redux'
 import { getPost } from '../actions/posts'
 import { Link, withRouter } from 'react-router-dom'
 import { formatDate } from '../utils/helpers'
+import Comment from './Comment'
 
 class PostPage extends Component {
   componentDidMount() {
     this.props.dispatch(getPost(this.props.id));
   }
   render() {
-    //let idPost
-    const { post } = this.props
+    const { post, comments } = this.props
 
     if (post === null) {
       console.log('post filtrado 1...', this.props)
@@ -41,7 +41,15 @@ class PostPage extends Component {
                 <span>| Editar | Remover |</span>
               </div>
             </div>
-
+            <br></br>
+            <h3>Comentários</h3>
+            {
+              comments === null
+              ? <div>Sem comentários...</div>
+              : comments.map((id) => (
+                  <Comment id={id}/>
+                ))
+            }
             {/*<NewPost id={id} />
             {replies.length !== 0 && <h3 className='center'>Replies</h3>}
             <ul>
@@ -59,14 +67,15 @@ class PostPage extends Component {
   }
 }
 
-function mapStateToProps ( {posts}, props ) {
+function mapStateToProps ( {posts, comments}, props ) {
   const { id } = props.match.params
 
   return{
     id: id,
     post: posts
       ? posts
-      : null
+      : null,
+    comments: Object.keys(comments).sort((a,b) => comments[b].timestamp - comments[a].timestamp)
   }
 }
 
