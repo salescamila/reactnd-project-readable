@@ -11,18 +11,19 @@ class Comment extends Component {
   }
 
   render() {
-    const { comment } = this.props
+    const { comment, postId } = this.props
 
     if (comment === null) {
       return <p>Essa comentário não existe.</p>
     }
-    console.log('comentário...',this.props)
+    console.log('comentário props...',this.props)
     const {
       id, author, body, deleted, parentDeleted, parentId, timestamp, voteScore
     } = comment
 
-    return(
-      <div className='tweet'>
+    if (postId === parentId) {
+      return (
+        <div className='tweet'>
           <div className='tweet-info'>
             <Link to={`/post/${parentId}`}><p className='link'>Postagem original</p></Link>
             <span>{formatDate(timestamp)}</span>
@@ -31,16 +32,20 @@ class Comment extends Component {
             <span>Score: {voteScore}</span>
             <span>Votação Up/Down</span>
           </div>
-      </div>
-    )
+        </div>
+      )
+    } else {
+      return null
+    }
   }
 }
 
-function mapStateToProps ({comments}, { id }) {
+function mapStateToProps ({comments}, { id, postId }) {
   return{
     comment: comments
       ? comments[id]
-      : null
+      : null,
+    postId
   }
 }
 

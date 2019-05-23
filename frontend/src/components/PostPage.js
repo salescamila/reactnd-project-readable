@@ -1,30 +1,31 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getPost } from '../actions/posts'
+import { getPost } from '../actions/singlePost'
 import { Link, withRouter } from 'react-router-dom'
 import { formatDate } from '../utils/helpers'
 import Comment from './Comment'
 
 class PostPage extends Component {
   componentDidMount() {
-    this.props.dispatch(getPost(this.props.id));
+    this.props.dispatch(getPost(this.props.postId));
   }
   render() {
-    const { post, comments } = this.props
+    const { postId, post, commentsIds } = this.props
 
     if (post === null) {
       console.log('post filtrado 1...', this.props)
       return null
     } else {
       const {
-        id, author, body, commentCount, timestamp, title, voteScore
+        author, body, commentCount, timestamp, title, voteScore
       } = post
       console.log('post filtrado 2...', this.props)
-    /*Object.keys(posts).map((p, i)=>(
-      posts[p].id === id
-      ? idPost = i
-      : null
-    ))*/
+
+      /*Object.keys(posts).map((p, i)=>(
+        posts[p].id === id
+        ? idPost = i
+        : null
+      ))*/
 
       return (
         <div>
@@ -44,13 +45,15 @@ class PostPage extends Component {
             <br></br>
             <h3>Comentários</h3>
             {
-              comments === null
-              ? <div>Sem comentários...</div>
-              : comments.map((id) => (
-                  <Comment id={id}/>
+              commentsIds === null
+              ? null
+              : commentsIds.map((id) => (
+                  <Comment id={id} postId={postId}/>
                 ))
             }
-            {/*<NewPost id={id} />
+            
+            {
+              /*<NewPost id={id} />
             {replies.length !== 0 && <h3 className='center'>Replies</h3>}
             <ul>
               {replies.map((replyId) => (
@@ -67,15 +70,15 @@ class PostPage extends Component {
   }
 }
 
-function mapStateToProps ( {posts, comments}, props ) {
+function mapStateToProps ( {singlePost, comments}, props ) {
   const { id } = props.match.params
-
+  
   return{
-    id: id,
-    post: posts
-      ? posts
+    postId: id,
+    post: singlePost
+      ? singlePost
       : null,
-    comments: Object.keys(comments).sort((a,b) => comments[b].timestamp - comments[a].timestamp)
+    commentsIds: Object.keys(comments).sort((a,b) => comments[b].timestamp - comments[a].timestamp)
   }
 }
 

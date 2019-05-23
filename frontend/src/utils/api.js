@@ -47,8 +47,8 @@ export function getSinglePost (postId) {
   return Promise.all([
     _getPost(postId),
     _getAllComments(postId),
-  ]).then(([singlePost, comments]) => ({
-    singlePost,
+  ]).then(([post, comments]) => ({
+    post,
     comments
   }))
 }

@@ -1,11 +1,11 @@
-import { RECEIVE_POSTS } from '../actions/posts'
+import { RECEIVE_SINGLE_POST } from '../actions/singlePost'
 
 export default function posts (state = {}, action) {
   switch(action.type) {
-    case RECEIVE_POSTS :
+    case RECEIVE_SINGLE_POST:
       return {
         ...state,
-        ...action.posts
+        ...action.singlePost
       }
     default :
       return state
