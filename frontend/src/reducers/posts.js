@@ -9,7 +9,8 @@ export default function posts (state = {}, action) {
       }
     case RECEIVE_SINGLE_POST:
       return {
-        ...action.posts
+        ...state,
+        ...action.singlePost
       }
     default :
       return state

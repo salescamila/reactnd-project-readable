@@ -11,9 +11,9 @@ export function handleInitialData () {
 
     return getInitialData()
       .then(({ categories, posts, comments }) => {
-        dispatch(receiveCategories(categories))
+       // dispatch(receiveCategories(categories))
         dispatch(receivePosts(posts))
-        dispatch(receiveComments(comments))
+       // dispatch(receiveComments(comments))
         dispatch(hideLoading())
       })
       .catch((e) => {

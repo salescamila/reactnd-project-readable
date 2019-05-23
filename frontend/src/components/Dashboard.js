@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { getPosts } from '../actions/posts'
 import Post from './Post'
 
 class Dashboard extends Component {
@@ -7,13 +8,25 @@ class Dashboard extends Component {
     orderBy: 'data',
     postsIds: null,
   }
-
+  componentDidMount() {
+    this.props.dispatch(getPosts());
+  }
   orderByDate = () => {
     if (this.props.posts !== null) {
       this.setState(() => ({
         orderBy: 'date',
         postsIds: Object.keys(this.props.posts).sort((a,b) => this.props.posts[b].timestamp - this.props.posts[a].timestamp)
       }))
+      console.log('postsIDS...',this.state.postsIds)
+      /*this.state.postsIds.map((id) => (
+        <Post post={this.state.postsIds[id]}/>
+      ))
+
+      Object.keys(posts).map((p, i)=>(
+        posts[p].id === id
+        ? idPost = i
+        : null
+      ))*/
     }
   }
   orderByScore = () => {
@@ -22,9 +35,11 @@ class Dashboard extends Component {
         orderBy: 'score',
         postsIds: Object.keys(this.props.posts).sort((a,b) => this.props.posts[b].voteScore - this.props.posts[a].voteScore)
       }))
+      console.log('postsIDS...',this.state.postsIds)
     }
   }
   render () {
+
     if(this.state.postsIds === null && this.props.posts !== null) {
       this.orderByDate()
     }
@@ -48,7 +63,7 @@ class Dashboard extends Component {
           this.state.postsIds === null
           ? <div>Select Ordernation</div>
           : this.state.postsIds.map((id) => (
-            <Post id={id}/>
+              <Post id={id}/>
             ))
         }
       </div>

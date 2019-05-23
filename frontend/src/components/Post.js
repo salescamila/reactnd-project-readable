@@ -16,7 +16,7 @@ class Post extends Component {
     if (post === null) {
       return <p>Essa postagem não existe.</p>
     }
-        
+    console.log('postagem...',this.props)
     const {
       id, author, commentCount, timestamp, title, voteScore
     } = post
@@ -38,7 +38,7 @@ class Post extends Component {
 
 function mapStateToProps ({posts}, { id }) {
   return{
-    post: id
+    post: posts
       ? posts[id]
       : null
   }

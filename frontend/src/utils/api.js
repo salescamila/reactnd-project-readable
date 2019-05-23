@@ -1,7 +1,7 @@
 import {
-  _getAllCategories, 
-  _getGategory, 
-  _getAllPosts, 
+  _getAllCategories,
+  _getGategory,
+  _getAllPosts,
   _getPost,
   _getAllComments,
   _getComment,
@@ -13,9 +13,9 @@ export function getInitialData () {
     _getAllPosts(),
     _getAllComments(),
   ]).then(([categories, posts, comments]) => ({
-    categories, 
+    categories,
     posts,
-    comments,
+    comments
   }))
 }
 export function getAllCategories () {
@@ -45,8 +45,8 @@ export function getAllPosts () {
 export function getSinglePost (postId) {
   return Promise.all([
     _getPost(postId),
-  ]).then(([post]) => ({
-    post
+  ]).then(([singlePost]) => ({
+    singlePost
   }))
 }
 
