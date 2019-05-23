@@ -1,8 +1,6 @@
 
 import { getInitialData } from '../utils/api'
-import { receiveCategories } from '../actions/categories'
 import { receivePosts } from '../actions/posts'
-import { receiveComments } from '../actions/comments'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
 export function handleInitialData () {
@@ -11,9 +9,7 @@ export function handleInitialData () {
 
     return getInitialData()
       .then(({ categories, posts, comments }) => {
-       // dispatch(receiveCategories(categories))
         dispatch(receivePosts(posts))
-       // dispatch(receiveComments(comments))
         dispatch(hideLoading())
       })
       .catch((e) => {

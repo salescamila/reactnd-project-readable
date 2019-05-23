@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { getCategories } from '../actions/categories';
 
 class Category extends Component {
+  componentDidMount() {
+    this.props.dispatch(getCategories());
+  }
   render() {
-    const { categories } = this.props.cats
+    const { categories } = this.props.categories
+
     if (categories === null) {
-      return <p>Não existem categorias cadastradas.</p>
+      return <div>Não existem categorias cadastradas.</div>
     }
 
     return (
@@ -27,7 +32,9 @@ class Category extends Component {
 
 function mapStateToProps ({ categories }) {
   return {
-    cats: categories
+    categories: categories
+      ? categories
+      : null
   }
 }
 
