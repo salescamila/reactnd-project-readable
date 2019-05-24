@@ -33,10 +33,8 @@ class NewPost extends Component {
 
     const { title, body, category } = this.state
     const { dispatch, id } = this.props
-    //const { category } = document.getElementById("selectCat").value
 
-    dispatch(handleAddPost({title, body, category}))
-
+    dispatch(handleAddPost({title, body, category}))  
     this.setState(() => ({
       title: '',
       body: '',
@@ -67,7 +65,7 @@ class NewPost extends Component {
           <button
             className='btn'
             type='submit'
-            disabled={(title === '' && body === '' && category === '')}>
+            disabled={(title === '' || body === '' || category === '')}>
               Submit
           </button>
         </form>
