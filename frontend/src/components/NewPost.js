@@ -7,16 +7,14 @@ class NewPost extends Component {
   state = {
     text: '',
     toHome: false,
-    title: '',
-    body: '',
-    author: '',
-  }
-  handleChange = (e) => {
-    const text = e.target.value
-
-    this.setState(() => ({
-      text
-    }))
+    post:{
+      id: '',
+      timestamp: '',
+      title: '',
+      body: '',
+      author: '',
+      category: '',
+    }
   }
   handleSubmit = (e) => {
     e.preventDefault()
@@ -32,7 +30,7 @@ class NewPost extends Component {
     }))
   }
   render() {
-    const { toHome } = this.state
+    const { text, toHome, post } = this.state
 
     if (toHome === true) {
       return <Redirect to='/' />
@@ -40,11 +38,21 @@ class NewPost extends Component {
 
     return (
       <div>
-        <h3>Criar Nova Postagem</h3>
-        <form>
-          {
-            //To-do: Formulário e tratamento do texto
-          }
+        <h3 className='center'>Criar Nova Postagem</h3>
+        <form className='new-tweet' onSubmit={this.handleSubmit}>
+          Title:<input className='input' type='text' name='title' /><br/>
+          Post:<textarea className='textarea' name='post' maxLength={500}/><br/>
+          Category:<select className='select'>
+                     <option value="react">React</option>
+                     <option value="redux">Redux</option>
+                   </select><br/>
+
+          <button
+            className='btn'
+            type='submit'
+            disabled={text === ''}>
+              Submit
+          </button>
         </form>
       </div>
     )
