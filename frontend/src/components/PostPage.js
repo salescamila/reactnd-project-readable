@@ -50,7 +50,7 @@ class PostPage extends Component {
                   <Comment id={id} postId={postId}/>
                 ))
             }
-            
+
             {
               /*<NewPost id={id} />
             {replies.length !== 0 && <h3 className='center'>Replies</h3>}
@@ -71,7 +71,7 @@ class PostPage extends Component {
 
 function mapStateToProps ( {singlePost, comments}, props ) {
   const { id } = props.match.params
-  
+
   return{
     postId: id,
     post: singlePost

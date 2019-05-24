@@ -21,7 +21,7 @@ class Comment extends Component {
       author, body, deleted, parentDeleted, parentId, timestamp, voteScore
     } = comment
 
-    if ( (postId === parentId) && (deleted) && (parentDeleted) ){
+    if ( (postId === parentId) && (!deleted) && (!parentDeleted) ){
       return (
         <div className='tweet'>
           <div className='tweet-info'>
@@ -30,7 +30,8 @@ class Comment extends Component {
             <span>Author: {author}</span>
             <p>{body}</p>
             <span>Score: {voteScore}</span>
-            <span>Votação Up/Down</span>
+            <span>Votação ~> | Up | Down |</span>
+            <span>| Editar | Remover |</span>
           </div>
         </div>
       )
