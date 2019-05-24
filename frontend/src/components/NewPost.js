@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import { handleAddPost } from '../actions/posts'
 
 class NewPost extends Component {
   state = {
     text: '',
     toHome: false,
+    title: '',
+    body: '',
+    author: '',
   }
   handleChange = (e) => {
     const text = e.target.value
@@ -14,9 +18,19 @@ class NewPost extends Component {
       text
     }))
   }
+  handleSubmit = (e) => {
+    e.preventDefault()
 
-  //To-do: HandleSubmit here
+    const { post } = this.state
+    const { dispatch, id } = this.props
 
+    dispatch(handleAddPost(post, id))
+
+    this.setState(() => ({
+      text: '',
+      toHome: id ? false : true,
+    }))
+  }
   render() {
     const { toHome } = this.state
 

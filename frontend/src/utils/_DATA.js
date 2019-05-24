@@ -1,3 +1,4 @@
+import Post from "../components/Post";
 
 const api = "http://localhost:3001"
 
@@ -33,6 +34,24 @@ export const _getPost = (postId) =>
   fetch(`${api}/posts/${postId}`, { headers })
     .then(res => res.json())
     .then(post => post)
+
+export const _savePost = (post) =>
+  fetch(`${api}/posts`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: {
+      //JSON.stringify({ shelf })
+      "id": post.id,
+      "timestamp": post.timestamp,
+      "title": post.title,
+      "body": post.body,
+      "author": post.author,
+      "category": post.category
+    }
+  }).then(res => res.json())
 
 //Get all the comments for a single post
 export const _getAllComments = (postId) =>

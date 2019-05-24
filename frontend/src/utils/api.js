@@ -3,6 +3,7 @@ import {
   _getGategory,
   _getAllPosts,
   _getPost,
+  _savePost,
   _getAllComments,
   _getComment,
 } from './_DATA.js'
@@ -51,6 +52,10 @@ export function getSinglePost (postId) {
     post,
     comments
   }))
+}
+
+export function savePost (post) {
+  return _savePost(post)
 }
 
 export function getAllComments (postId) {
