@@ -52,15 +52,16 @@ export function getCategoryPosts (path) {
   }
 }
 
-export function handleAddPost (text) {
+export function handleAddPost (post) {
   return (dispatch, getState) => {
     const { authedUser } = getState()
 
     dispatch(showLoading())
 
     return savePost({
-      text,
-      author: authedUser
+      ...post,
+      author: 'camilasales'
+      //author: authedUser
     })
       .then((post) => dispatch(addPost(post)))
       .then(() => dispatch(hideLoading()))

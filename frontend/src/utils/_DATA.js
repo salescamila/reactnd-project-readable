@@ -11,6 +11,10 @@ const headers = {
   'Authorization': "wahtever"
 }
 
+export function generateUID () {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+}
+
 //Get all of the categories available for the app
 export const _getAllCategories = () =>
   fetch(`${api}/categories`, { headers })
@@ -42,15 +46,13 @@ export const _savePost = (post) =>
       ...headers,
       'Content-Type': 'application/json'
     },
-    body: {
-      //JSON.stringify({ shelf })
-      "id": post.id,
-      "timestamp": post.timestamp,
-      "title": post.title,
-      "body": post.body,
-      "author": post.author,
-      "category": post.category
-    }
+    body:{"id": post.id,
+          "timestamp": post.timestamp,
+          "title": post.title,
+          "body": post.body,
+          "author": post.author,
+          "category": post.category
+        }
   }).then(res => res.json())
 
 //Get all the comments for a single post

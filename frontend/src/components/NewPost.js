@@ -5,32 +5,46 @@ import { handleAddPost } from '../actions/posts'
 
 class NewPost extends Component {
   state = {
-    text: '',
     toHome: false,
-    post:{
-      id: '',
-      timestamp: '',
-      title: '',
-      body: '',
-      author: '',
-      category: '',
-    }
+    title: '',
+    body: '',
+    category: '',
+  }
+  handleChangeTitle = (e) => {
+    const title = e.target.value
+    this.setState(() => ({
+      title
+    }))
+  }
+  handleChangeBody = (e) => {
+    const body = e.target.value
+    this.setState(() => ({
+      body
+    }))
+  }
+  handleChangeCategory = (e) => {
+    const category = e.target.value
+    this.setState(() => ({
+      category
+    }))
   }
   handleSubmit = (e) => {
     e.preventDefault()
 
-    const { post } = this.state
+    const { title, body, category } = this.state
     const { dispatch, id } = this.props
+    //const { category } = document.getElementById("selectCat").value
 
-    dispatch(handleAddPost(post, id))
+    dispatch(handleAddPost({title, body, category}))
 
     this.setState(() => ({
-      text: '',
+      title: '',
+      body: '',
       toHome: id ? false : true,
     }))
   }
   render() {
-    const { text, toHome, post } = this.state
+    const { title, body, category, toHome, post } = this.state
 
     if (toHome === true) {
       return <Redirect to='/' />
@@ -40,17 +54,20 @@ class NewPost extends Component {
       <div>
         <h3 className='center'>Criar Nova Postagem</h3>
         <form className='new-tweet' onSubmit={this.handleSubmit}>
-          Title:<input className='input' type='text' name='title' /><br/>
-          Post:<textarea className='textarea' name='post' maxLength={500}/><br/>
-          Category:<select className='select'>
-                     <option value="react">React</option>
-                     <option value="redux">Redux</option>
+          Title:<input value={title} onChange={this.handleChangeTitle}
+                  className='input' type='text' name='title' /><br/>
+          Post:<textarea value={body} onChange={this.handleChangeBody}
+                  className='textarea' name='post' maxLength={500}/><br/>
+          Category:<select id='selectCat' className='select' onChange={this.handleChangeCategory}>
+                    <option value=""></option>
+                    <option value="react">React</option>
+                    <option value="redux">Redux</option>
                    </select><br/>
 
           <button
             className='btn'
             type='submit'
-            disabled={text === ''}>
+            disabled={(title === '' && body === '' && category === '')}>
               Submit
           </button>
         </form>

@@ -6,6 +6,7 @@ import {
   _savePost,
   _getAllComments,
   _getComment,
+  generateUID,
 } from './_DATA.js'
 
 export function getInitialData () {
@@ -55,7 +56,13 @@ export function getSinglePost (postId) {
 }
 
 export function savePost (post) {
-  return _savePost(post)
+  const formattedPost = {
+    ...post,
+    id: generateUID(),
+    timestamp: Date.now(),
+  }
+  console.log('formattedPost...',formattedPost)
+  return _savePost(formattedPost)
 }
 
 export function getAllComments (postId) {
