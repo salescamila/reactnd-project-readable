@@ -10,7 +10,7 @@ class Dashboard extends Component {
   }
   componentDidMount() {
     this.props.dispatch(getPosts())
-    this.orderByDate()
+    this.orderByScore()
   }
   orderByDate = () => {
     if (this.props.posts !== null) {
@@ -18,7 +18,6 @@ class Dashboard extends Component {
         orderBy: 'date',
         postsIds: Object.keys(this.props.posts).sort((a,b) => this.props.posts[b].timestamp - this.props.posts[a].timestamp)
       }))
-      console.log('postsIDS...',this.state.postsIds)
       /*this.state.postsIds.map((id) => (
         <Post post={this.state.postsIds[id]}/>
       ))
@@ -36,12 +35,11 @@ class Dashboard extends Component {
         orderBy: 'score',
         postsIds: Object.keys(this.props.posts).sort((a,b) => this.props.posts[b].voteScore - this.props.posts[a].voteScore)
       }))
-      console.log('postsIDS...',this.state.postsIds)
     }
   }
   render () {
     if(this.state.postsIds === null) {
-      this.orderByDate()
+      this.orderByScore()
     }
     return (
       <div>

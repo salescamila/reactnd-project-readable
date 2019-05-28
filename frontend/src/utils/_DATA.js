@@ -1,4 +1,4 @@
-import Post from "../components/Post";
+//import Post from "../components/Post";
 
 const api = "http://localhost:3001"
 
@@ -44,16 +44,13 @@ export const _savePost = (post) =>
     method: 'POST',
     headers: {
       ...headers,
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json; charset=utf-8'
     },
-    body:{"id": post.id,
-          "timestamp": post.timestamp,
-          "title": post.title,
-          "body": post.body,
-          "author": post.author,
-          "category": post.category
-        }
-  }).then(res => res.json())
+    body: JSON.stringify({ ...post })
+    }).then(res=>res.json())
+      .catch(error =>{
+        console.log('error...',error)
+      })
 
 //Get all the comments for a single post
 export const _getAllComments = (postId) =>

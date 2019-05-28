@@ -61,7 +61,6 @@ export function savePost (post) {
     id: generateUID(),
     timestamp: Date.now(),
   }
-  console.log('formattedPost...',formattedPost)
   return _savePost(formattedPost)
 }
 

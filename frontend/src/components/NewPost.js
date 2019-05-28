@@ -34,7 +34,8 @@ class NewPost extends Component {
     const { title, body, category } = this.state
     const { dispatch, id } = this.props
 
-    dispatch(handleAddPost({title, body, category}))  
+    dispatch(handleAddPost({title, body, category}))
+
     this.setState(() => ({
       title: '',
       body: '',
@@ -60,6 +61,7 @@ class NewPost extends Component {
                     <option value=""></option>
                     <option value="react">React</option>
                     <option value="redux">Redux</option>
+                    <option value="udacity">Udacity</option>
                    </select><br/>
 
           <button

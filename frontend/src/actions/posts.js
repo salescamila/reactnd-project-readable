@@ -2,19 +2,11 @@ import { showLoading, hideLoading } from 'react-redux-loading'
 import { getAllPosts, getCategory, savePost } from '../utils/api'
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-export const ADD_POST = 'ADD_POST'
 
 export function receivePosts (posts) {
   return {
     type: RECEIVE_POSTS,
     posts,
-  }
-}
-
-function addPost (post) {
-  return {
-    type: ADD_POST,
-    post,
   }
 }
 
@@ -53,17 +45,17 @@ export function getCategoryPosts (path) {
 }
 
 export function handleAddPost (post) {
-  return (dispatch, getState) => {
-    const { authedUser } = getState()
-
+  return (dispatch/*, getState*/) => {
+    //const { authedUser } = getState()
     dispatch(showLoading())
 
     return savePost({
-      ...post,
-      author: 'camilasales'
-      //author: authedUser
-    })
-      .then((post) => dispatch(addPost(post)))
-      .then(() => dispatch(hideLoading()))
+        ...post,
+        author: 'camilasales'
+        //author: authedUser
+      })
+      .then(() => {
+        dispatch(hideLoading())
+      })
   }
 }
