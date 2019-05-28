@@ -33,12 +33,7 @@ export const _getAllPosts = () =>
     .then(res => res.json())
     .then(posts => posts)
 
-//Get the details of a single post
-export const _getPost = (postId) =>
-  fetch(`${api}/posts/${postId}`, { headers })
-    .then(res => res.json())
-    .then(post => post)
-
+//Add a new post {id, timestamp, title, body, author, category}
 export const _savePost = (post) =>
   fetch(`${api}/posts`, {
     method: 'POST',
@@ -49,7 +44,52 @@ export const _savePost = (post) =>
     body: JSON.stringify({ ...post })
     }).then(res=>res.json())
       .catch(error =>{
-        console.log('error...',error)
+        console.log('Error in _savePost...',error)
+      })
+
+//Get the details of a single post
+export const _getPost = (postId) =>
+  fetch(`${api}/posts/${postId}`, { headers })
+    .then(res => res.json())
+    .then(post => post)
+
+//Used for voting on a post {option: upVote/downVote}
+export const _votePost = (postId, vote) =>
+  fetch(`${api}/posts/${postId}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json; charset=utf-8'
+    },
+    body: JSON.stringify({ ...vote })
+    }).then(res=>res.json())
+      .catch(error =>{
+        console.log('Error in _votePost...',error)
+      })
+
+//Edit the details of an existing post {title,body}
+export const _editPost = (postId, post) =>
+  fetch(`${api}/posts/${postId}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json; charset=utf-8'
+    },
+    body: JSON.stringify({ ...post })
+    }).then(res=>res.json())
+      .catch(error =>{
+        console.log('Error in _votePost...',error)
+      })
+
+//Sets the deleted flag for a post to 'true'.
+//Sets the parentDeleted flag for all child comments to 'true'.
+export const _deletePost = (postId) =>
+  fetch(`${api}/posts/${postId}`, {
+    method: 'DELETE',
+    headers: { headers },
+    }).then(res=>res.json())
+      .catch(error =>{
+        console.log('Error in _deletePost...',error)
       })
 
 //Get all the comments for a single post
@@ -58,16 +98,68 @@ export const _getAllComments = (postId) =>
     .then(res => res.json())
     .then(comments => comments)
 
+//Add a comment to a post {id, timestamp, body, author, parentId}
+export const _saveComment = (comment) =>
+  fetch(`${api}/comments`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json; charset=utf-8'
+    },
+    body: JSON.stringify({ ...comment })
+    }).then(res=>res.json())
+      .catch(error =>{
+        console.log('Error in _saveComment...',error)
+      })
+
 //Get the details for a single comment
 export const _getComment = (commentId) =>
   fetch(`${api}/comments/${commentId}`, { headers })
     .then(res => res.json())
     .then(comment => comment)
 
+//Used for voting on a comment. {option: upVote/downVote}
+export const _voteComment = (commentId, vote) =>
+  fetch(`${api}/comments/${commentId}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json; charset=utf-8'
+    },
+    body: JSON.stringify({ ...vote })
+    }).then(res=>res.json())
+      .catch(error =>{
+        console.log('Error in _voteComment...',error)
+      })
+
+//Edit the details of an existing comment {timestamp, body}
+export const _editComment = (commentId, comment) =>
+  fetch(`${api}/comments/${commentId}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json; charset=utf-8'
+    },
+    body: JSON.stringify({ ...comment })
+    }).then(res=>res.json())
+      .catch(error =>{
+        console.log('Error in _editComment...',error)
+      })
+
+//Sets a comment's deleted flag to 'true'
+export const _deleteComment = (commentId) =>
+  fetch(`${api}/comments/${commentId}`, {
+    method: 'DELETE',
+    headers: { headers },
+    }).then(res=>res.json())
+      .catch(error =>{
+        console.log('Error in _deleteComment...',error)
+      })
 
 
 
 
+/*
 export const update = (book, shelf) =>
   fetch(`${api}/books/${book.id}`, {
     method: 'PUT',
@@ -88,3 +180,4 @@ export const search = (query) =>
     body: JSON.stringify({ query })
   }).then(res => res.json())
     .then(data => data.books)
+*/

@@ -1,12 +1,19 @@
 import {
+  generateUID,
   _getAllCategories,
   _getGategory,
   _getAllPosts,
-  _getPost,
   _savePost,
+  _getPost,
+  _votePost,
+  _editPost,
+  _deletePost,
   _getAllComments,
+  _saveComment,
   _getComment,
-  generateUID,
+  _voteComment,
+  _editComment,
+  _deleteComment
 } from './_DATA.js'
 
 export function getInitialData () {
@@ -21,6 +28,7 @@ export function getInitialData () {
   }))
 }
 
+//Get all of the categories available for the app.
 export function getAllCategories () {
   return Promise.all([
     _getAllCategories(),
@@ -29,6 +37,7 @@ export function getAllCategories () {
   }))
 }
 
+//Get all of the posts for a particular category
 export function getCategory (categoryId) {
   return Promise.all([
     _getGategory(categoryId),
@@ -37,6 +46,7 @@ export function getCategory (categoryId) {
   }))
 }
 
+//Get all of the posts.
 export function getAllPosts () {
   return Promise.all([
     _getAllPosts(),
@@ -45,6 +55,17 @@ export function getAllPosts () {
   }))
 }
 
+//Add a new post
+export function savePost (post) {
+  const formattedPost = {
+    ...post,
+    id: generateUID(),
+    timestamp: Date.now(),
+  }
+  return _savePost(formattedPost)
+}
+
+//Get the details of a single post
 export function getSinglePost (postId) {
   return Promise.all([
     _getPost(postId),
@@ -55,15 +76,24 @@ export function getSinglePost (postId) {
   }))
 }
 
-export function savePost (post) {
-  const formattedPost = {
-    ...post,
-    id: generateUID(),
-    timestamp: Date.now(),
-  }
-  return _savePost(formattedPost)
+//Used for voting on a post
+export function votePost (postId, vote) {
+  return _votePost(postId, vote)
 }
 
+//Edit the details of an existing post
+export function editPost (postId, post) {
+  return _editPost(postId, post)
+}
+
+//deletePost
+//Sets the deleted flag for a post to 'true'.
+//Sets the parentDeleted flag for all child comments to 'true'.
+export function deletePost (postId) {
+  return _editPost(postId)
+}
+
+//Get all the comments for a single post
 export function getAllComments (postId) {
   return Promise.all([
     _getAllComments(postId),
@@ -72,10 +102,36 @@ export function getAllComments (postId) {
   }))
 }
 
+//Add a comment to a post
+export function saveComment (comment) {
+  const formattedComment = {
+    ...post,
+    id: generateUID(),
+    timestamp: Date.now(),
+  }
+  return _savePost(formattedComment)
+}
+
+//Get the details for a single comment
 export function getComment (commentId) {
   return Promise.all([
     _getComment(commentId),
   ]).then(([comment]) => ({
     comment
   }))
+}
+
+//Used for voting on a comment.
+export function voteComment (commentId, vote) {
+  return _votePost(commentId, vote)
+}
+
+//Edit the details of an existing comment
+export function editComment (commentId, comment) {
+  return _editComment(commentId, comment)
+}
+
+//Sets a comment's deleted flag to 'true'
+export function deleteComment (commentId) {
+  return _editComment(commentId)
 }
