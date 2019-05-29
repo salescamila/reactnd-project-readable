@@ -133,5 +133,5 @@ export function editComment (commentId, comment) {
 
 //Sets a comment's deleted flag to 'true'
 export function deleteComment (commentId) {
-  return _editComment(commentId)
+  return _deleteComment(commentId)
 }

@@ -63,7 +63,6 @@ export function handleAddPost (post) {
 export function handleDeletePost (postId) {
   return (dispatch) => {
     dispatch(showLoading())
-
     return deletePost(postId)
       .then(() => {
         dispatch(hideLoading())

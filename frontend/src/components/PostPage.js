@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { getPost } from '../actions/singlePost'
 import { formatDate } from '../utils/helpers'
 import Comment from './Comment'
-import NewComment from './NewComment';
+import NewComment from './NewComment'
 import { handleDeletePost } from '../actions/posts'
 
 class PostPage extends Component {

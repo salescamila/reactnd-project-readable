@@ -43,7 +43,7 @@ class NewPost extends Component {
     }))
   }
   render() {
-    const { title, body, category, toHome, post } = this.state
+    const { title, body, category, toHome } = this.state
 
     if (toHome === true) {
       return <Redirect to='/' />
