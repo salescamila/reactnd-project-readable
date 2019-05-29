@@ -32,7 +32,8 @@ class Post extends Component {
             <span>Author: {author}</span>
             <span>Total Comments: {commentCount}</span>
             <span>Score: {voteScore}</span>
-            <span>Votação Up/Down</span>
+            <span>Votação <button onClick={this.handleVoteUp}>Up</button>
+                          <button onClick={this.handleVoteDown}>Down</button></span>
           </div>
       </div>
     )
