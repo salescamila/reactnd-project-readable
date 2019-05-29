@@ -87,7 +87,7 @@ export const _deletePost = (postId) =>
   fetch(`${api}/posts/${postId}`, {
     method: 'DELETE',
     headers: { headers },
-    }).then(res=>res.json())
+    }).then(res=>console.log(res))
       .catch(error =>{
         console.log('Error in _deletePost...',error)
       })

@@ -90,7 +90,7 @@ export function editPost (postId, post) {
 //Sets the deleted flag for a post to 'true'.
 //Sets the parentDeleted flag for all child comments to 'true'.
 export function deletePost (postId) {
-  return _editPost(postId)
+  return _deletePost(postId)
 }
 
 //Get all the comments for a single post
@@ -123,7 +123,7 @@ export function getComment (commentId) {
 
 //Used for voting on a comment.
 export function voteComment (commentId, vote) {
-  return _votePost(commentId, vote)
+  return _voteComment(commentId, vote)
 }
 
 //Edit the details of an existing comment

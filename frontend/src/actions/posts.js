@@ -61,8 +61,7 @@ export function handleAddPost (post) {
 }
 
 export function handleDeletePost (postId) {
-  return (dispatch/*, getState*/) => {
-    //const { authedUser } = getState()
+  return (dispatch) => {
     dispatch(showLoading())
 
     return deletePost(postId)

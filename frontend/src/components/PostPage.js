@@ -4,8 +4,16 @@ import { getPost } from '../actions/singlePost'
 import { formatDate } from '../utils/helpers'
 import Comment from './Comment'
 import NewComment from './NewComment';
+import { handleDeletePost } from '../actions/posts'
 
 class PostPage extends Component {
+  handleDelete = (e) => {
+    e.preventDefault()
+
+    const { dispatch, post } = this.props
+    const {id} = post
+    dispatch(handleDeletePost(id))
+  }
   componentDidMount() {
     this.props.dispatch(getPost(this.props.postId));
   }
@@ -38,6 +46,9 @@ class PostPage extends Component {
                 <span>Score: {voteScore}</span>
                 <span>Votação ~> | Up | Down |</span>
                 <span>| Editar | Remover |</span>
+                <button onClick={this.handleDelete}>
+                  [Delete Post]
+                </button>
               </div>
             </div>
             <br></br>
