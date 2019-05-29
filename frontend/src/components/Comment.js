@@ -43,12 +43,12 @@ class Comment extends Component {
             <span>Author: {author}</span>
             <p>{body}</p>
             <span>Score: {voteScore}</span>
-            <span>Votação <button onClick={this.handleVoteUp}>Up</button>
-                          <button onClick={this.handleVoteDown}>Down</button></span>
-            <span>| Editar | Remover |</span>
-            <span><button onClick={this.handleDelete}>
-              [Delete Comment]
-            </button></span>
+            <span>Votação <button onClick={this.handleVoteUp}>[Up]</button>
+                          <button onClick={this.handleVoteDown}>[Down]</button></span>
+            <span>
+              <button onClick={this.handleEdit}>[Edit Comment]</button>
+              <button onClick={this.handleDelete}>[Delete Comment]</button>
+            </span>
           </div>
         </div>
       )
