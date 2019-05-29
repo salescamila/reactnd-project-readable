@@ -2,20 +2,26 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { formatDate } from '../utils/helpers'
-import { handleDeleteComment } from '../actions/comments'
+import { handleDeleteComment, handleVoteComment } from '../actions/comments'
 
 class Comment extends Component {
-  handleLike = (e) => {
-    e.preventDefault()
-
-    //To-do: dispatch Votação
-  }
   handleDelete = (e) => {
     e.preventDefault()
-
     const { dispatch, comment } = this.props
     const {id} = comment
     dispatch(handleDeleteComment(id))
+  }
+  handleVoteUp = (e) => {
+    e.preventDefault()
+    const { dispatch, comment } = this.props
+    const {id} = comment
+    dispatch(handleVoteComment(id, {option: 'upVote'}))
+  }
+  handleVoteDown = (e) => {
+    e.preventDefault()
+    const { dispatch, comment } = this.props
+    const {id} = comment
+    dispatch(handleVoteComment(id, {option: 'downVote'}))
   }
   render() {
     const { comment, postId } = this.props

@@ -1,5 +1,5 @@
 import { showLoading, hideLoading } from 'react-redux-loading'
-import { saveComment, deleteComment } from "../utils/api";
+import { saveComment, deleteComment, voteComment } from "../utils/api";
 
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 
@@ -30,6 +30,16 @@ export function handleDeleteComment (commentId) {
   return (dispatch) => {
     dispatch(showLoading())
     return deleteComment(commentId)
+      .then(() => {
+        dispatch(hideLoading())
+      })
+  }
+}
+
+export function handleVoteComment (commentId, vote) {
+  return (dispatch) => {
+    dispatch(showLoading())
+    return voteComment(commentId, vote)
       .then(() => {
         dispatch(hideLoading())
       })
