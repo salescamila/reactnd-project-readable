@@ -4,7 +4,7 @@ import { getPost } from '../actions/singlePost'
 import { formatDate } from '../utils/helpers'
 import Comment from './Comment'
 import NewComment from './NewComment'
-import { handleDeletePost } from '../actions/posts'
+import { handleDeletePost, handleVotePost } from '../actions/posts'
 
 class PostPage extends Component {
   handleDelete = (e) => {
@@ -13,6 +13,18 @@ class PostPage extends Component {
     const { dispatch, post } = this.props
     const {id} = post
     dispatch(handleDeletePost(id))
+  }
+  handleVoteUp = (e) => {
+    e.preventDefault()
+    const { dispatch, post } = this.props
+    const {id} = post
+    dispatch(handleVotePost(id, {option: 'upVote'}))
+  }
+  handleVoteDown = (e) => {
+    e.preventDefault()
+    const { dispatch, post } = this.props
+    const {id} = post
+    dispatch(handleVotePost(id, {option: 'downVote'}))
   }
   componentDidMount() {
     this.props.dispatch(getPost(this.props.postId));

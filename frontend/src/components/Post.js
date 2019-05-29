@@ -2,17 +2,21 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { formatDate } from '../utils/helpers'
+import { handleVotePost } from '../actions/posts'
 
 class Post extends Component {
   handleVoteUp = (e) => {
     e.preventDefault()
-    //To-do: dispatch Votação
+    const { dispatch, post } = this.props
+    const {id} = post
+    dispatch(handleVotePost(id, {option: 'upVote'}))
   }
   handleVoteDown = (e) => {
     e.preventDefault()
-    //To-do: dispatch Votação
+    const { dispatch, post } = this.props
+    const {id} = post
+    dispatch(handleVotePost(id, {option: 'downVote'}))
   }
-
   render() {
     const { post } = this.props
 
