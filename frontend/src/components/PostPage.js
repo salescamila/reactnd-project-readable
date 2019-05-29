@@ -5,6 +5,7 @@ import { formatDate } from '../utils/helpers'
 import Comment from './Comment'
 import NewComment from './NewComment'
 import { handleDeletePost, handleVotePost } from '../actions/posts'
+import { withRouter } from 'react-router-dom'
 
 class PostPage extends Component {
   handleDelete = (e) => {
@@ -102,4 +103,4 @@ function mapStateToProps ( {singlePost, comments}, props ) {
   }
 }
 
-export default connect(mapStateToProps)(PostPage)
+export default withRouter(connect(mapStateToProps)(PostPage))

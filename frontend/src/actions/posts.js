@@ -2,11 +2,20 @@ import { showLoading, hideLoading } from 'react-redux-loading'
 import { getAllPosts, getCategory, savePost, deletePost, votePost } from '../utils/api'
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
+export const ATT_VOTE_POST = 'ATT_VOTE_POST'
 
 export function receivePosts (posts) {
   return {
     type: RECEIVE_POSTS,
     posts,
+  }
+}
+
+function attVotePost (postId, count) {
+  return {
+    type: ATT_VOTE_POST,
+    id: postId,
+    count
   }
 }
 
@@ -73,8 +82,17 @@ export function handleDeletePost (postId) {
 export function handleVotePost (postId, vote) {
   return (dispatch) => {
     dispatch(showLoading())
+    let count
+
+    vote.option === 'upVote'
+    ? count = 1
+    : count = -1
+    
     return votePost(postId, vote)
       .then(() => {
+        console.log('postID...', postId)
+        console.log('vote count...', count)
+        dispatch(attVotePost(postId, count))
         dispatch(hideLoading())
       })
   }
