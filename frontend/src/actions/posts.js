@@ -90,8 +90,6 @@ export function handleVotePost (postId, vote) {
     
     return votePost(postId, vote)
       .then(() => {
-        console.log('postID...', postId)
-        console.log('vote count...', count)
         dispatch(attVotePost(postId, count))
         dispatch(hideLoading())
       })

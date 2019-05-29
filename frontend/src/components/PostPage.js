@@ -40,12 +40,6 @@ class PostPage extends Component {
         id, author, body, commentCount, timestamp, title, voteScore
       } = post
 
-      /*Object.keys(posts).map((p, i)=>(
-        posts[p].id === id
-        ? idPost = i
-        : null
-      ))*/
-
       return (
         <div>
           <h3>Detalhes da Postagem</h3>
@@ -75,16 +69,6 @@ class PostPage extends Component {
                   <Comment id={id} postId={postId}/>
                 ))
             }
-            {/*
-            {replies.length !== 0 && <h3 className='center'>Replies</h3>}
-            <ul>
-              {replies.map((replyId) => (
-                <li key={replyId}>
-                  <Post id={replyId}/>
-                </li>
-              ))}
-            </ul>
-            */}
         </div>
       )
     }
