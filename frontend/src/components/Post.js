@@ -2,12 +2,23 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { formatDate } from '../utils/helpers'
+import { handleDeletePost } from '../actions/posts'
 
 class Post extends Component {
-  handleLike = (e) => {
+  handleVoteUp = (e) => {
+    e.preventDefault()
+    //To-do: dispatch Votação
+  }
+  handleVoteDown = (e) => {
+    e.preventDefault()
+    //To-do: dispatch Votação
+  }
+  handleDelete = (e) => {
     e.preventDefault()
 
-    //To-do: dispatch Votação
+    const { id } = this.props.post
+
+    //dispatch(handleDeletePost({id}))
   }
 
   render() {
@@ -30,6 +41,9 @@ class Post extends Component {
             <span>Total Comments: {commentCount}</span>
             <span>Score: {voteScore}</span>
             <span>Votação Up/Down</span>
+            <button onClick={this.handleDelete}>
+                [Delete Post]
+            </button>
           </div>
       </div>
     )

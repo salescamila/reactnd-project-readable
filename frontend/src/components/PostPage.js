@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getPost } from '../actions/singlePost'
 import { formatDate } from '../utils/helpers'
 import Comment from './Comment'
+import NewComment from './NewComment';
 
 class PostPage extends Component {
   componentDidMount() {
@@ -12,13 +13,11 @@ class PostPage extends Component {
     const { postId, post, commentsIds } = this.props
 
     if (post === null) {
-      console.log('post filtrado 1...', this.props)
       return null
     } else {
       const {
-        author, body, commentCount, timestamp, title, voteScore
+        id, author, body, commentCount, timestamp, title, voteScore
       } = post
-      console.log('post filtrado 2...', this.props)
 
       /*Object.keys(posts).map((p, i)=>(
         posts[p].id === id
@@ -42,6 +41,7 @@ class PostPage extends Component {
               </div>
             </div>
             <br></br>
+            <NewComment parentId={id} />
             <h3>Comentários</h3>
             {
               commentsIds === null
@@ -50,9 +50,7 @@ class PostPage extends Component {
                   <Comment id={id} postId={postId}/>
                 ))
             }
-
-            {
-              /*<NewPost id={id} />
+            {/*
             {replies.length !== 0 && <h3 className='center'>Replies</h3>}
             <ul>
               {replies.map((replyId) => (
@@ -61,8 +59,7 @@ class PostPage extends Component {
                 </li>
               ))}
             </ul>
-            */
-          }
+            */}
         </div>
       )
     }

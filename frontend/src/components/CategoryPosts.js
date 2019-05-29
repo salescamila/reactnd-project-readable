@@ -29,13 +29,13 @@ class CategoryPosts extends Component {
       }))
     }
   }
-  render() {    
+  render() {
     const { category } =  this.props.match.params
-    
+
     if(this.state.postsIds === null) {
       this.orderByDate()
     }
-    
+
     return (
       <div>
         <h3>Postagens na Categoria {category}</h3>
@@ -58,7 +58,7 @@ class CategoryPosts extends Component {
           : this.state.postsIds.map((id) => (
               <Post id={id} dashboard={false}/>
             ))
-        } 
+        }
       </div>
     )
   }
@@ -74,4 +74,3 @@ function mapStateToProps ( {categoryPosts}, {props} ) {
 }
 
 export default connect(mapStateToProps)(CategoryPosts)
-

@@ -105,11 +105,11 @@ export function getAllComments (postId) {
 //Add a comment to a post
 export function saveComment (comment) {
   const formattedComment = {
-    ...post,
+    ...comment,
     id: generateUID(),
     timestamp: Date.now(),
   }
-  return _savePost(formattedComment)
+  return _saveComment(formattedComment)
 }
 
 //Get the details for a single comment
