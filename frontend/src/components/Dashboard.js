@@ -13,9 +13,7 @@ class Dashboard extends Component {
   }
 
   orderByDate = () => {
-    console.log('data..')
     if (this.props.posts !== null) {
-      console.log('props..', this.props)
       this.setState(() => ({
         orderBy: 'date',
         postsIds: Object.keys(this.props.posts).sort((a,b) => this.props.posts[b].timestamp - this.props.posts[a].timestamp)
@@ -23,9 +21,7 @@ class Dashboard extends Component {
     }
   }
   orderByScore = () => {
-    console.log('score..')
     if (this.props.posts !== null) {
-      console.log('props..', this.props)
       this.setState(() => ({
         orderBy: 'score',
         postsIds: Object.keys(this.props.posts).sort((a,b) => this.props.posts[b].voteScore - this.props.posts[a].voteScore)

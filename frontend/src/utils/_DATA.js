@@ -89,7 +89,7 @@ export const _deletePost = (postId) =>
   fetch(`${api}/posts/${postId}`, {
     method: 'DELETE',
     headers: { ...headers },
-    }).then(res=>console.log(res))
+    }).then(res => res.json())
       .catch(error =>{
         console.log('Error in _deletePost...',error)
       })
@@ -159,29 +159,3 @@ export const _deleteComment = (commentId) =>
       .catch(error =>{
         console.log('Error in _deleteComment...',error)
       })
-
-
-
-
-/*
-export const update = (book, shelf) =>
-  fetch(`${api}/books/${book.id}`, {
-    method: 'PUT',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ shelf })
-  }).then(res => res.json())
-
-export const search = (query) =>
-  fetch(`${api}/search`, {
-    method: 'POST',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ query })
-  }).then(res => res.json())
-    .then(data => data.books)
-*/

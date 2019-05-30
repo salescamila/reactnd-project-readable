@@ -29,7 +29,6 @@ class Comment extends Component {
     if (comment === null) {
       return <p>Essa comentário não existe.</p>
     }
-    console.log('comentário props...',this.props)
     const {
       author, body, deleted, parentDeleted, parentId, timestamp, voteScore
     } = comment

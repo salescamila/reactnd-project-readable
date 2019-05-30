@@ -9,7 +9,6 @@ class CategoryPosts extends Component {
     postsIds: null,
   }
   componentDidMount() {
-    console.log('props...', this.props)
     this.props.dispatch(getCategoryPosts( this.props.match.params.category))
   }
   orderByDate = () => {
