@@ -1,5 +1,5 @@
 import { showLoading, hideLoading } from 'react-redux-loading'
-import { getSinglePost, votePost, saveComment } from '../utils/api'
+import { getSinglePost, votePost } from '../utils/api'
 import { receiveComments } from '../actions/comments'
 
 export const RECEIVE_SINGLE_POST = 'RECEIVE_SINGLE_POST'

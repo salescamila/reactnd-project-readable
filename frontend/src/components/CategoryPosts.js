@@ -9,7 +9,7 @@ class CategoryPosts extends Component {
     postsIds: null,
   }
   componentDidMount() {
-    this.props.dispatch(getCategoryPosts( this.props.match.params.category))
+    this.props.dispatch(getCategoryPosts(this.props.match.params.category))
   }
   orderByDate = () => {
     if (this.props.posts !== null) {
@@ -53,9 +53,13 @@ class CategoryPosts extends Component {
           onClick={this.orderByScore}>
           Order By Vote Score
         </button>
-        { this.props.postsIds.map((id) => (
-              <Post id={id} dashboard={true}/>
-             ))
+        { this.props.postsIds === null
+          ? <div>Sem postagens ainda...</div>
+          : this.props.postsIds.map((id) => (
+              this.props.posts[id].category === this.props.match.params.category
+              ? <Post id={id} dashboard={false}/>
+              : null
+          ))
         }
         {/*
           this.state.postsIds === null
