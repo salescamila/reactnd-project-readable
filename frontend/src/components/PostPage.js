@@ -6,15 +6,19 @@ import Comment from './Comment'
 import NewComment from './NewComment'
 import { handleDeletePost } from '../actions/posts'
 import { handleVotePost } from '../actions/singlePost'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 
 class PostPage extends Component {
+  state = {
+    toHome: false
+  }
   handleDelete = (e) => {
     e.preventDefault()
-
     const { dispatch, post } = this.props
     const {id} = post
-    dispatch(handleDeletePost(id))
+    dispatch(handleDeletePost(id)).then(
+      this.setState(() => ({toHome: true}))
+    )
   }
   handleVoteUp = (e) => {
     e.preventDefault()
@@ -32,18 +36,25 @@ class PostPage extends Component {
     this.props.dispatch(getPost(this.props.postId));
   }
   render() {
+    const {toHome } = this.state
+    if (toHome === true) {
+      return <Redirect to='/' />
+    }
+
     const { postId, post, commentsIds } = this.props
 
     if (post === null) {
-      return null
+      return (<div>
+                <h3 className="center">Detalhes da Postagem</h3>
+                <h4>Postagem não existe ou foi deletada.</h4>
+              </div>)
     } else {
       const {
         id, author, body, commentCount, timestamp, title, voteScore
       } = post
-
       return (
         <div>
-          <h3>Detalhes da Postagem</h3>
+          <h3 className="center">Detalhes da Postagem</h3>
             <div className='tweet'>
               <div className='tweet-info'>
                 <p>Title: {title}</p>
