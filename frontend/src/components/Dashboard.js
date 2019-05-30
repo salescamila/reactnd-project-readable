@@ -10,27 +10,22 @@ class Dashboard extends Component {
   }
   componentDidMount() {
     this.props.dispatch(getPosts())
-    this.orderByScore()
   }
+
   orderByDate = () => {
+    console.log('data..')
     if (this.props.posts !== null) {
+      console.log('props..', this.props)
       this.setState(() => ({
         orderBy: 'date',
         postsIds: Object.keys(this.props.posts).sort((a,b) => this.props.posts[b].timestamp - this.props.posts[a].timestamp)
       }))
-      /*this.state.postsIds.map((id) => (
-        <Post post={this.state.postsIds[id]}/>
-      ))
-
-      Object.keys(posts).map((p, i)=>(
-        posts[p].id === id
-        ? idPost = i
-        : null
-      ))*/
     }
   }
   orderByScore = () => {
+    console.log('score..')
     if (this.props.posts !== null) {
+      console.log('props..', this.props)
       this.setState(() => ({
         orderBy: 'score',
         postsIds: Object.keys(this.props.posts).sort((a,b) => this.props.posts[b].voteScore - this.props.posts[a].voteScore)
@@ -38,20 +33,23 @@ class Dashboard extends Component {
     }
   }
   render () {
-    if(this.state.postsIds === null) {
+    /*if(this.state.postsIds === null) {
       this.orderByScore()
-    }
+    }*/
     return (
       <div>
         <h3 className='center'>Your Timeline</h3>
-        <div>Select a order to show the posts...</div>
+        {//<div>Select a order to show the posts...</div>
+        }
         <button
+          disabled='true'
           className='btn'
           type='button'
           onClick={this.orderByDate}>
           Order By Date
         </button>
         <button
+          disabled='true'
           className='btn'
           type='button'
           onClick={this.orderByScore}>
@@ -59,7 +57,9 @@ class Dashboard extends Component {
         </button>
         {
           this.state.postsIds === null
-          ? <div>Select Ordernation</div>
+          ? this.props.postsIds.map((id) => (
+              <Post id={id} dashboard={true}/>
+             ))
           : this.state.postsIds.map((id) => (
               <Post id={id} dashboard={true}/>
             ))
@@ -72,8 +72,9 @@ class Dashboard extends Component {
 function mapStateToProps ({ posts }) {
   return {
     posts: posts
-     ? posts
-     : null
+      ? posts
+      : null,
+    postsIds: Object.keys(posts).sort((a,b) => posts[b].voteScore - posts[a].voteScore)
   }
 }
 

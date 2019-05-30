@@ -4,11 +4,11 @@ export default function categoryPosts (state = {}, action) {
   switch(action.type) {
     case RECEIVE_CATEGORY_POSTS :
       let posts = null
-      const post_keys = Object.keys(action.posts)
+      const post_keys = Object.keys(action.categoryPosts)
       post_keys.map((i)=>(
         posts = {
           ...posts,
-          [action.posts[i].id]: action.posts[i]
+          [action.categoryPosts[i].id]: action.categoryPosts[i]
         }
       ))
 

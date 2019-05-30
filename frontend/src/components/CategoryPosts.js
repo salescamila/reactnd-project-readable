@@ -10,8 +10,7 @@ class CategoryPosts extends Component {
   }
   componentDidMount() {
     console.log('props...', this.props)
-    this.props.dispatch(getCategoryPosts( this.props.match.params.category));
-    this.orderByDate()
+    this.props.dispatch(getCategoryPosts( this.props.match.params.category))
   }
   orderByDate = () => {
     if (this.props.posts !== null) {
@@ -39,26 +38,33 @@ class CategoryPosts extends Component {
     return (
       <div>
         <h3>Postagens na Categoria {category}</h3>
-        <div>Select a order to show the posts...</div>
+        {//<div>Select a order to show the posts...</div>
+        }
         <button
+          disabled='true'
           className='btn'
           type='button'
           onClick={this.orderByDate}>
           Order By Date
         </button>
         <button
+          disabled='true'
           className='btn'
           type='button'
           onClick={this.orderByScore}>
           Order By Vote Score
         </button>
-        {
+        { this.props.postsIds.map((id) => (
+              <Post id={id} dashboard={true}/>
+             ))
+        }
+        {/*
           this.state.postsIds === null
           ? <div>Select Ordernation</div>
           : this.state.postsIds.map((id) => (
               <Post id={id} dashboard={false}/>
             ))
-        }
+        */}
       </div>
     )
   }
@@ -69,6 +75,7 @@ function mapStateToProps ( {categoryPosts}, {props} ) {
     posts: categoryPosts
       ? categoryPosts
       : null,
+    postsIds: Object.keys(categoryPosts).sort((a,b) => categoryPosts[b].voteScore - categoryPosts[a].voteScore),
     props
   }
 }

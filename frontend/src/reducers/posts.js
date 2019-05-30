@@ -11,7 +11,6 @@ export default function posts (state = {}, action) {
           [action.posts[i].id]: action.posts[i]
         }
       ))
-
       return {
         ...state,
         ...posts
