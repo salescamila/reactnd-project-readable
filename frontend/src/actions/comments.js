@@ -4,6 +4,7 @@ import { saveComment, deleteComment, voteComment } from "../utils/api";
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const ADD_VOTE_COMMENT = 'ADD_VOTE_COMMENT'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
 
 export function receiveComments (comments) {
   return {
@@ -19,11 +20,18 @@ export function addComment (comment) {
   }
 }
 
-function addVoteComment (commentId, count) {
+export function addVoteComment (commentId, count) {
   return {
     type: ADD_VOTE_COMMENT,
     id: commentId,
     count
+  }
+}
+
+export function delComment (commentId) {
+  return {
+    type: DELETE_COMMENT,
+    id: commentId
   }
 }
 
@@ -49,6 +57,7 @@ export function handleDeleteComment (commentId) {
     dispatch(showLoading())
     return deleteComment(commentId)
       .then(() => {
+        dispatch(delComment(commentId))
         dispatch(hideLoading())
       })
   }
