@@ -8,7 +8,7 @@ if (!token)
   token = localStorage.token = Math.random().toString(36).substr(-8)
 
 const headers = {
-  'Authorization': "wahtever"
+  'Authorization': "whatever"
 }
 
 export function generateUID () {
@@ -43,6 +43,7 @@ export const _savePost = (post) =>
     },
     body: JSON.stringify({ ...post })
     }).then(res=>res.json())
+      .then(posts=>posts)
       .catch(error =>{
         console.log('Error in _savePost...',error)
       })
@@ -63,6 +64,7 @@ export const _votePost = (postId, vote) =>
     },
     body: JSON.stringify({ ...vote })
     }).then(res=>res.json())
+      .then(posts=>posts)
       .catch(error =>{
         console.log('Error in _votePost...',error)
       })
@@ -86,7 +88,7 @@ export const _editPost = (postId, post) =>
 export const _deletePost = (postId) =>
   fetch(`${api}/posts/${postId}`, {
     method: 'DELETE',
-    headers: { headers },
+    headers: { ...headers },
     }).then(res=>console.log(res))
       .catch(error =>{
         console.log('Error in _deletePost...',error)
@@ -108,6 +110,7 @@ export const _saveComment = (comment) =>
     },
     body: JSON.stringify({ ...comment })
     }).then(res=>res.json())
+      .then(comments=>comments)
       .catch(error =>{
         console.log('Error in _saveComment...',error)
       })
@@ -128,6 +131,7 @@ export const _voteComment = (commentId, vote) =>
     },
     body: JSON.stringify({ ...vote })
     }).then(res=>res.json())
+      .then(comments=>comments)
       .catch(error =>{
         console.log('Error in _voteComment...',error)
       })
@@ -150,7 +154,7 @@ export const _editComment = (commentId, comment) =>
 export const _deleteComment = (commentId) =>
   fetch(`${api}/comments/${commentId}`, {
     method: 'DELETE',
-    headers: { headers },
+    headers: { ...headers },
     }).then(res=>res.json())
       .catch(error =>{
         console.log('Error in _deleteComment...',error)
