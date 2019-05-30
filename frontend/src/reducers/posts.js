@@ -17,7 +17,6 @@ export default function posts (state = {}, action) {
         ...state,
         ...posts
       }
-
     case ADD_POST:
       return {
         ...state,

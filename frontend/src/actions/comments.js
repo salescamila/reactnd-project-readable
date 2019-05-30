@@ -2,7 +2,8 @@ import { showLoading, hideLoading } from 'react-redux-loading'
 import { saveComment, deleteComment, voteComment } from "../utils/api";
 
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
-export const ATT_VOTE_COMMENT = 'ATT_VOTE_COMMENT'
+export const ADD_COMMENT = 'ADD_COMMENT'
+export const ADD_VOTE_COMMENT = 'ADD_VOTE_COMMENT'
 
 export function receiveComments (comments) {
   return {
@@ -11,9 +12,16 @@ export function receiveComments (comments) {
   }
 }
 
+export function addComment (comment) {
+  return {
+    type: ADD_COMMENT,
+    comment,
+  }
+}
+
 function attVoteComment (commentId, count) {
   return {
-    type: ATT_VOTE_COMMENT,
+    type: ADD_VOTE_COMMENT,
     id: commentId,
     count
   }
@@ -29,7 +37,8 @@ export function handleAddComment (comment) {
         author: 'camilasales'
         //author: authedUser
       })
-      .then(() => {
+      .then((comment) => {
+        dispatch(addComment(comment))
         dispatch(hideLoading())
       })
   }
@@ -53,9 +62,9 @@ export function handleVoteComment (commentId, vote) {
     vote.option === 'upVote'
     ? count = 1
     : count = -1
-    
+
     return voteComment(commentId, vote)
-      .then(() => {        
+      .then(() => {
         dispatch(attVoteComment(commentId, count))
         dispatch(hideLoading())
       })
