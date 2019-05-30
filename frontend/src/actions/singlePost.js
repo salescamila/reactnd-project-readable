@@ -1,6 +1,7 @@
 import { showLoading, hideLoading } from 'react-redux-loading'
-import { getSinglePost } from '../utils/api'
+import { getSinglePost, votePost, saveComment } from '../utils/api'
 import { receiveComments } from '../actions/comments'
+import { addVotePost } from '../actions/posts'
 
 export const RECEIVE_SINGLE_POST = 'RECEIVE_SINGLE_POST'
 
@@ -25,6 +26,23 @@ export function getPost (id) {
         console.warn('Error in getPost: ', e)
         dispatch(hideLoading())
         alert('The was an error getting the post. Try again.')
+      })
+  }
+}
+
+export function handleVotePost (postId, vote) {
+  return (dispatch) => {
+    dispatch(showLoading())
+    let count
+
+    vote.option === 'upVote'
+    ? count = 1
+    : count = -1
+
+    return votePost(postId, vote)
+      .then(() => {
+        dispatch(addVotePost(postId, count))
+        dispatch(hideLoading())
       })
   }
 }

@@ -43,7 +43,7 @@ export const _savePost = (post) =>
     },
     body: JSON.stringify({ ...post })
     }).then(res=>res.json())
-      .then(posts=>posts)
+      .then(post=>post)
       .catch(error =>{
         console.log('Error in _savePost...',error)
       })
@@ -110,7 +110,7 @@ export const _saveComment = (comment) =>
     },
     body: JSON.stringify({ ...comment })
     }).then(res=>res.json())
-      .then(comments=>comments)
+      .then(comment=>comment)
       .catch(error =>{
         console.log('Error in _saveComment...',error)
       })
