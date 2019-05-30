@@ -25,7 +25,7 @@ export const _getAllCategories = () =>
 export const _getGategory = (category) =>
   fetch(`${api}/${category}/posts`, { headers })
     .then(res => res.json())
-    .then(category => category)
+    .then(posts => posts)
 
 //Get all of the posts
 export const _getAllPosts = () =>
@@ -131,7 +131,7 @@ export const _voteComment = (commentId, vote) =>
     },
     body: JSON.stringify({ ...vote })
     }).then(res=>res.json())
-      .then(comments=>comments)
+      .then(comment=>comment)
       .catch(error =>{
         console.log('Error in _voteComment...',error)
       })

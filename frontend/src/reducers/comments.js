@@ -3,26 +3,32 @@ import { RECEIVE_COMMENTS, ADD_COMMENT, ADD_VOTE_COMMENT } from '../actions/comm
 export default function comments (state = {}, action) {
   switch(action.type) {
     case RECEIVE_COMMENTS :
+      comments = null
+      const post_keys = Object.keys(action.comments)
+      post_keys.map((i)=>(
+        comments = {
+          ...comments,
+          [action.comments[i].id]: action.comments[i]
+        }
+      ))
+
       return {
         ...state,
-        ...action.comments
+        ...comments
       }
     case ADD_COMMENT:
-        return {
-          ...state,
-          [action.comment.id]: action.comment
-        }
+      return {
+        ...state,
+        [action.comment.id]: action.comment
+      }
     case ADD_VOTE_COMMENT:
-        const keys = Object.keys(state)
-        keys.map((i)=>(
-          state[i].id === action.id
-            ? state[i].voteScore = state[i].voteScore + action.count
-            : null
-        ))
-
-        return {
-          ...state,
+      return {
+        ...state,
+        [action.id]: {
+          ...state[action.id],
+          voteScore: state[action.id].voteScore + action.count
         }
+      }
     default :
       return state
   }

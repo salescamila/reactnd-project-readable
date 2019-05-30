@@ -1,10 +1,9 @@
 import { RECEIVE_POSTS, ADD_POST, ADD_VOTE_POST } from '../actions/posts'
 
 export default function posts (state = {}, action) {
-  let posts
   switch(action.type) {
     case RECEIVE_POSTS :
-      posts = null
+      let posts = null
       const post_keys = Object.keys(action.posts)
       post_keys.map((i)=>(
         posts = {

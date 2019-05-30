@@ -19,7 +19,7 @@ export function addComment (comment) {
   }
 }
 
-function attVoteComment (commentId, count) {
+function addVoteComment (commentId, count) {
   return {
     type: ADD_VOTE_COMMENT,
     id: commentId,
@@ -65,7 +65,7 @@ export function handleVoteComment (commentId, vote) {
 
     return voteComment(commentId, vote)
       .then(() => {
-        dispatch(attVoteComment(commentId, count))
+        dispatch(addVoteComment(commentId, count))
         dispatch(hideLoading())
       })
   }
