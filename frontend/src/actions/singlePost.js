@@ -1,14 +1,22 @@
 import { showLoading, hideLoading } from 'react-redux-loading'
 import { getSinglePost, votePost, saveComment } from '../utils/api'
 import { receiveComments } from '../actions/comments'
-import { addVotePost } from '../actions/posts'
 
 export const RECEIVE_SINGLE_POST = 'RECEIVE_SINGLE_POST'
+export const ADD_VOTE_SINGLE_POST = 'ADD_VOTE_SINGLE_POST'
 
 export function receiveSinglePost (singlePost) {
   return {
     type: RECEIVE_SINGLE_POST,
     singlePost,
+  }
+}
+
+export function addVoteSinglePost (postId, count) {
+  return {
+    type: ADD_VOTE_SINGLE_POST,
+    id: postId,
+    count
   }
 }
 
@@ -41,7 +49,7 @@ export function handleVotePost (postId, vote) {
 
     return votePost(postId, vote)
       .then(() => {
-        dispatch(addVotePost(postId, count))
+        dispatch(addVoteSinglePost(postId, count))
         dispatch(hideLoading())
       })
   }

@@ -4,7 +4,8 @@ import { getPost } from '../actions/singlePost'
 import { formatDate } from '../utils/helpers'
 import Comment from './Comment'
 import NewComment from './NewComment'
-import { handleDeletePost, handleVotePost } from '../actions/posts'
+import { handleDeletePost } from '../actions/posts'
+import { handleVotePost } from '../actions/singlePost'
 import { withRouter } from 'react-router-dom'
 
 class PostPage extends Component {
