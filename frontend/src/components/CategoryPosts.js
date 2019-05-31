@@ -37,8 +37,7 @@ class CategoryPosts extends Component {
     return (
       <div>
         <h3>Postagens na Categoria {category}</h3>
-        {//<div>Select a order to show the posts...</div>
-        }
+        {/*<div>Select a order to show the posts...</div>
         <button
           disabled='true'
           className='btn'
@@ -52,7 +51,7 @@ class CategoryPosts extends Component {
           type='button'
           onClick={this.orderByScore}>
           Order By Vote Score
-        </button>
+        </button>*/}
         { this.props.postsIds === null
           ? <div>Sem postagens ainda...</div>
           : this.props.postsIds.map((id) => (

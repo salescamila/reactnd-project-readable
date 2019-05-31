@@ -35,8 +35,7 @@ class Dashboard extends Component {
     return (
       <div>
         <h3 className='center'>Your Timeline</h3>
-        {//<div>Select a order to show the posts...</div>
-        }
+        {/*<div>Select a order to show the posts...</div>
         <button
           disabled='true'
           className='btn'
@@ -50,7 +49,7 @@ class Dashboard extends Component {
           type='button'
           onClick={this.orderByScore}>
           Order By Vote Score
-        </button>
+        </button>*/}
         {
           this.state.postsIds === null
           ? this.props.postsIds.map((id) => (

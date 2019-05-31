@@ -16,7 +16,7 @@ class Category extends Component {
 
     return (
       <div>
-        <h3>Lista de Categorias das Postagens.</h3>
+        <h3 className="center">Lista de Categorias das Postagens.</h3>
         <ul className='link'>
             {categories
               ? categories.map((c, i) => {

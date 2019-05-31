@@ -63,17 +63,17 @@ class PostPage extends Component {
                 <p>{body}</p>
                 <span>Total Comments: {commentCount}</span>
                 <span>Score: {voteScore}</span>
-                <span>Votação <button onClick={this.handleVoteUp}>[Up]</button>
-                              <button onClick={this.handleVoteDown}>[Down]</button></span>
+                <span>Votação <button onClick={this.handleVoteUp}>Up</button>
+                              <button onClick={this.handleVoteDown}>Down</button></span>
                 <span>
-                  <button onClick={this.handleEdit}>[Edit Post]</button>
-                  <button onClick={this.handleDelete}>[Delete Post]</button>
+                  {/*<button onClick={this.handleEdit}>[Edit Post]</button>*/}
+                  <button onClick={this.handleDelete}>Delete Post</button>
                 </span>
               </div>
             </div>
             <br></br>
             <NewComment parentId={id} />
-            <h3>Comentários</h3>
+            <h3 className="center">Comentários</h3>
             {
               commentsIds === null
               ? null

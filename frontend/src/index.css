@@ -31,11 +31,19 @@ a {
   padding: 10px;
 }
 
+button {
+  background: #00b5d6;
+  border-radius: 4px;
+  margin: 0px 4px;
+  padding: 5px 15px;
+}
+
 .btn {
   text-transform: uppercase;
   margin: 35px auto;
   padding: 10px;
   border: 1px solid rgba(0,0,0,.29);
+  border-radius: 8px;
   cursor: pointer;
   background: #fff;
   font-size: 16px;
@@ -60,6 +68,13 @@ a {
 
 .active {
   font-weight: bold;
+}
+
+.nav {
+  padding: 1px 20px;
+  background: #9bd3f8;
+  text-align: center;
+  color: #fff;
 }
 
 .nav ul {
