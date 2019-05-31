@@ -4,6 +4,7 @@ import { getAllPosts, getCategory, savePost, deletePost, votePost } from '../uti
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const ADD_POST = 'ADD_POST'
 export const ADD_VOTE_POST = 'ADD_VOTE_POST'
+export const DELETE_POST = 'DELETE_POST'
 
 export function receivePosts (posts) {
   return {
@@ -24,6 +25,13 @@ export function addVotePost (postId, count) {
     type: ADD_VOTE_POST,
     id: postId,
     count
+  }
+}
+
+export function removePost(postId) {
+  return {
+    type: DELETE_POST,
+    id: postId,
   }
 }
 
@@ -83,6 +91,7 @@ export function handleDeletePost (postId) {
     dispatch(showLoading())
     return deletePost(postId)
       .then(() => {
+        dispatch(removePost(postId))
         dispatch(hideLoading())
       })
   }
