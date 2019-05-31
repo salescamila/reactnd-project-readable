@@ -35,8 +35,8 @@ class Comment extends Component {
 
     if ( (postId === parentId) && (!deleted) && (!parentDeleted) ){
       return (
-        <div className='tweet'>
-          <div className='tweet-info'>
+        <div className='post'>
+          <div className='post-info'>
             <Link to={`/post/${parentId}`}><p className='link'>Postagem original</p></Link>
             <span>{formatDate(timestamp)}</span>
             <span>Author: {author}</span>

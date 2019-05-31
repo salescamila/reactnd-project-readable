@@ -52,7 +52,7 @@ class NewPost extends Component {
     return (
       <div>
         <h3 className='center'>Criar Nova Postagem</h3>
-        <form className='new-tweet' onSubmit={this.handleSubmit}>
+        <form className='new-post' onSubmit={this.handleSubmit}>
           Title:<input value={title} onChange={this.handleChangeTitle}
                   className='input' type='text' name='title' /><br/>
           Post:<textarea value={body} onChange={this.handleChangeBody}

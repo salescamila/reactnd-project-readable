@@ -38,7 +38,7 @@ class NewComment extends Component {
     return (
       <div>
         <h3 className='center'>Add New Comment</h3>
-        <form className='new-tweet' onSubmit={this.handleSubmit}>
+        <form className='new-post' onSubmit={this.handleSubmit}>
           Comment: <textarea value={body} onChange={this.handleChangeBody}
                   className='textarea' name='post' maxLength={500}/><br/>
           <button

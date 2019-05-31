@@ -1,18 +1,3 @@
-/*
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-*/
 body {
   margin: 0;
   padding: 0;
@@ -108,7 +93,7 @@ li {
   margin: 10px;
 }
 
-.tweet {
+.post {
   width: 100%;
   max-width: 590px;
   padding: 10px;
@@ -118,43 +103,42 @@ li {
   border-radius: 3px;
 }
 
-.tweet-info {
+.post-info {
   margin: 10px;
   display: flex;
   flex-direction: column;
 }
 
-/* Hacky but less typing in the video */
-.tweet-info > div > span:first-child {
+.post-info > div > span:first-child {
   font-weight: bold;
   margin-right: 5px;
 }
-.tweet-info > div > span:nth-child(2) {
+.post-info > div > span:nth-child(2) {
   color: #969696;
   font-size: 16px;
 }
-.tweet-info > div > div {
+.post-info > div > div {
   color: #969696;
   font-size: 15px;
 }
-.tweet-info > div > p {
+.post-info > div > p {
   font-size: 18px;
   margin: 10px 0;
 }
-.tweet-icons {
+.post-icons {
   display: flex;
   align-items: center;
 }
-.tweet-icons > span {
+.post-icons > span {
   color: #969696;
   margin: 0 15px 0 5px;
   font-size: 18px !important;
 }
-.tweet-icon {
+.post-icon {
   font-size: 27px;
   color: #697784;
 }
-.tweet-icon:hover {
+.post-icon:hover {
   color: #00b5d6;
   cursor: pointer;
 }
@@ -172,7 +156,7 @@ li {
   border: none;
 }
 
-.new-tweet {
+.new-post {
   width: 100%;
   max-width: 590px;
   margin: 0 auto;
@@ -202,7 +186,7 @@ li {
   font-size: 15px;
 }
 
-.tweet-length {
+.post-length {
   text-align: right;
   margin-top: 10px;
   font-size: 20px;

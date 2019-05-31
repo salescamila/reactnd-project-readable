@@ -55,8 +55,8 @@ class PostPage extends Component {
       return (
         <div>
           <h3 className="center">Detalhes da Postagem</h3>
-            <div className='tweet'>
-              <div className='tweet-info'>
+            <div className='post'>
+              <div className='post-info'>
                 <p>Title: {title}</p>
                 <span>{formatDate(timestamp)}</span>
                 <span>Author: {author}</span>

@@ -29,8 +29,8 @@ class Post extends Component {
     } = post
 
     return(
-      <div className='tweet'>
-          <div className='tweet-info'>
+      <div className='post'>
+          <div className='post-info'>
             <Link to={`/post/${id}`}><p className='link'>Title: {title}</p></Link>
             <span>{formatDate(timestamp)}</span>
             <span>Author: {author}</span>
