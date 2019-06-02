@@ -69,16 +69,11 @@ export function getCategoryPosts (path) {
   }
 }
 
-export function handleAddPost (post) {
-  return (dispatch/*, getState*/) => {
-    //const { authedUser } = getState()
+export function handleAddPost (postToAdd) {
+  return (dispatch) => {
     dispatch(showLoading())
 
-    return savePost({
-        ...post,
-        author: 'camilasales'
-        //author: authedUser
-      })
+    return savePost(postToAdd)
       .then((post) => {
         dispatch(addPost(post))
         dispatch(hideLoading())

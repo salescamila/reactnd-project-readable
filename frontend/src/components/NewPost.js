@@ -9,6 +9,7 @@ class NewPost extends Component {
     title: '',
     body: '',
     category: '',
+    author: '',
   }
   handleChangeTitle = (e) => {
     const title = e.target.value
@@ -28,22 +29,29 @@ class NewPost extends Component {
       category
     }))
   }
+  handleChangeAuthor = (e) => {
+    const author = e.target.value
+    this.setState(() => ({
+      author
+    }))
+  }
   handleSubmit = (e) => {
     e.preventDefault()
 
-    const { title, body, category } = this.state
+    const { title, body, category, author } = this.state
     const { dispatch, id } = this.props
 
-    dispatch(handleAddPost({title, body, category}))
+    dispatch(handleAddPost({title, body, category, author}))
 
     this.setState(() => ({
       title: '',
       body: '',
+      author: '',
       toHome: id ? false : true,
     }))
   }
   render() {
-    const { title, body, category, toHome } = this.state
+    const { title, body, category, author, toHome } = this.state
 
     if (toHome === true) {
       return <Redirect to='/' />
@@ -63,11 +71,12 @@ class NewPost extends Component {
                     <option value="redux">Redux</option>
                     <option value="udacity">Udacity</option>
                    </select><br/>
-
+          Author:<input value={author} onChange={this.handleChangeAuthor}
+                  className='input' type='text' name='title' /><br/>
           <button
             className='btn'
             type='submit'
-            disabled={(title === '' || body === '' || category === '')}>
+            disabled={(title === '' || body === '' || category === '' || author === '')}>
               Submit
           </button>
         </form>

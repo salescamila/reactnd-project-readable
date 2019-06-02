@@ -35,16 +35,11 @@ export function delComment (commentId) {
   }
 }
 
-export function handleAddComment (comment) {
-  return (dispatch/*, getState*/) => {
-    //const { authedUser } = getState()
+export function handleAddComment (commentToAdd) {
+  return (dispatch) => {
     dispatch(showLoading())
 
-    return saveComment({
-        ...comment,
-        author: 'camilasales'
-        //author: authedUser
-      })
+    return saveComment(commentToAdd)
       .then((comment) => {
         dispatch(addComment(comment))
         dispatch(hideLoading())
