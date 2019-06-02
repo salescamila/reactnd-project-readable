@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Dashboard from './Dashboard'
 import LoadingBar from 'react-redux-loading'
@@ -20,11 +20,12 @@ class App extends Component {
             {this.props.loading === true
               ? null
               : <div>
-                  <Route path='/' exact component={Dashboard} />
-                  <Route path='/post/:id' exact component={PostPage} />
-                  <Route path='/category' exact component={Category} />
-                  <Route path='/:category/posts' exact component={CategoryPosts} />
-                  <Route path='/newPost' exact component={NewPost} />
+                 <Switch>
+                    <Route path='/' exact component={Dashboard} />
+                    <Route path='/newPost' exact component={NewPost} />
+                    <Route path='/:category/:id' exact component={PostPage} />
+                    <Route path='/:category' exact component={CategoryPosts} />
+                  </Switch>
                 </div>}
           </div>
         </Fragment>

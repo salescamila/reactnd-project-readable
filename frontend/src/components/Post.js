@@ -25,13 +25,13 @@ class Post extends Component {
     }
 
     const {
-      id, author, commentCount, timestamp, title, voteScore
+      id, author, category, commentCount, timestamp, title, voteScore
     } = post
 
     return(
       <div className='post'>
           <div className='post-info'>
-            <Link to={`/post/${id}`}><p className='link'>Title: {title}</p></Link>
+            <Link to={`/${category}/${id}`}><p className='link'>Title: {title}</p></Link>
             <span>{formatDate(timestamp)}</span>
             <span>Author: {author}</span>
             <span>Total Comments: {commentCount}</span>

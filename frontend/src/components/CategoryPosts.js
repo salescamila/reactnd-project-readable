@@ -33,7 +33,6 @@ class CategoryPosts extends Component {
     if(this.state.postsIds === null) {
       this.orderByDate()
     }
-
     return (
       <div>
         <h3>Postagens na Categoria {category}</h3>

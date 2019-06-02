@@ -6,19 +6,33 @@ export default function Nav () {
     <div className='nav'>
       <nav>
         <ul>
-          <li>
+          <li className='link'>
             <NavLink to='/' exact activeClassName='active'>
-              Home
+              HOME
             </NavLink>
           </li>
-          <li>
-            <NavLink to='/category' activeClassName='active'>
-              Categorias
-            </NavLink>
-          </li>
-          <li>
+          <li className='link'>
             <NavLink to='/newPost' activeClassName='active'>
-              Nova Postagem
+              NOVA POSTAGEM
+            </NavLink>
+          </li>
+        </ul>
+
+        <ul>
+          <li>Categorias: </li>
+          <li className='link'>
+            <NavLink to='/react' activeClassName='active'>
+              REACT
+            </NavLink>
+          </li>
+          <li className='link'>
+            <NavLink to='/redux' activeClassName='active'>
+              REDUX
+            </NavLink>
+          </li>
+          <li className='link'>
+            <NavLink to='/udacity' activeClassName='active'>
+              UDACITY
             </NavLink>
           </li>
         </ul>

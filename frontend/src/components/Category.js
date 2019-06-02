@@ -20,7 +20,7 @@ class Category extends Component {
         <ul className='link'>
             {categories
               ? categories.map((c, i) => {
-                return <li key={i}><Link to={`/${c.path}/posts`}>{c.name}</Link></li>
+                return <li key={i}><Link to={`/${c.path}`}>{c.name}</Link></li>
                 })
               : null
             }

@@ -42,7 +42,6 @@ class PostPage extends Component {
     }
 
     const { postId, post, commentsIds } = this.props
-    console.log('propss', post.id )
 
     if (post.id === undefined) {
       return (<div>
