@@ -4,7 +4,7 @@ import { receiveComments } from '../actions/comments'
 
 export const RECEIVE_SINGLE_POST = 'RECEIVE_SINGLE_POST'
 export const ADD_VOTE_SINGLE_POST = 'ADD_VOTE_SINGLE_POST'
-export const ADD_COMMENT_COUNT = 'ADD_COMMENT_COUNT'
+export const COMMENT_COUNT = 'COMMENT_COUNT'
 
 export function receiveSinglePost (singlePost) {
   return {
@@ -21,9 +21,10 @@ export function addVoteSinglePost (count) {
   }
 }
 
-export function addCommentCount () {
+export function commentCount (count) {
   return {
-    type: ADD_COMMENT_COUNT
+    type: COMMENT_COUNT,
+    count
   }
 }
 
