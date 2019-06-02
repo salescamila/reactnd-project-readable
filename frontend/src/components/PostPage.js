@@ -42,11 +42,11 @@ class PostPage extends Component {
     }
 
     const { postId, post, commentsIds } = this.props
+    console.log('propss', post.id )
 
-    if (post === null) {
+    if (post.id === undefined) {
       return (<div>
-                <h3 className="center">Detalhes da Postagem</h3>
-                <h4>Postagem não existe ou foi deletada.</h4>
+                <h3 className="center">404: Post Not Found</h3>
               </div>)
     } else {
       const {
@@ -66,7 +66,7 @@ class PostPage extends Component {
                 <span>Votação <button onClick={this.handleVoteUp}>Up</button>
                               <button onClick={this.handleVoteDown}>Down</button></span>
                 <span>
-                  {/*<button onClick={this.handleEdit}>[Edit Post]</button>*/}
+                  {<button onClick={this.handleEdit}>Edit Post</button>}
                   <button onClick={this.handleDelete}>Delete Post</button>
                 </span>
               </div>
@@ -92,9 +92,8 @@ function mapStateToProps ( {singlePost, comments}, props ) {
 
   return{
     postId: id,
-    post: singlePost
-      ? singlePost
-      : null,
+    post: singlePost,
+      //? singlePost  : null,
     commentsIds: Object.keys(comments).sort((a,b) => comments[b].timestamp - comments[a].timestamp)
   }
 }

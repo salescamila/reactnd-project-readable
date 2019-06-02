@@ -5,6 +5,13 @@ import { receiveComments } from '../actions/comments'
 export const RECEIVE_SINGLE_POST = 'RECEIVE_SINGLE_POST'
 export const ADD_VOTE_SINGLE_POST = 'ADD_VOTE_SINGLE_POST'
 export const COMMENT_COUNT = 'COMMENT_COUNT'
+export const DELETE_SINGLE_POST = 'DELETE_SINGLE_POST'
+
+export function removeSinglePost() {
+  return {
+    type: DELETE_SINGLE_POST
+  }
+}
 
 export function receiveSinglePost (singlePost) {
   return {

@@ -1,5 +1,6 @@
 import { showLoading, hideLoading } from 'react-redux-loading'
 import { getAllPosts, getCategory, savePost, deletePost, votePost } from '../utils/api'
+import { removeSinglePost } from '../actions/singlePost'
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const ADD_POST = 'ADD_POST'
@@ -87,6 +88,7 @@ export function handleDeletePost (postId) {
     return deletePost(postId)
       .then(() => {
         dispatch(removePost(postId))
+        dispatch(removeSinglePost())
         dispatch(hideLoading())
       })
   }
