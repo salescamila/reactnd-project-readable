@@ -1,5 +1,6 @@
 import { showLoading, hideLoading } from 'react-redux-loading'
-import { saveComment, deleteComment, voteComment } from "../utils/api";
+import { saveComment, deleteComment, voteComment } from "../utils/api"
+import { addCommentCount } from '../actions/singlePost'
 
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
@@ -42,6 +43,7 @@ export function handleAddComment (commentToAdd) {
     return saveComment(commentToAdd)
       .then((comment) => {
         dispatch(addComment(comment))
+        dispatch(addCommentCount())
         dispatch(hideLoading())
       })
   }

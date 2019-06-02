@@ -1,4 +1,4 @@
-import { RECEIVE_SINGLE_POST, ADD_VOTE_SINGLE_POST } from '../actions/singlePost'
+import { RECEIVE_SINGLE_POST, ADD_VOTE_SINGLE_POST, ADD_COMMENT_COUNT } from '../actions/singlePost'
 
 export default function posts (state = {}, action) {
   switch(action.type) {
@@ -8,10 +8,15 @@ export default function posts (state = {}, action) {
         ...action.singlePost
       }
     case ADD_VOTE_SINGLE_POST:
-        return {
-          ...state,
-          voteScore: state.voteScore + action.count
-        }
+      return {
+        ...state,
+        voteScore: state.voteScore + action.count
+      }
+    case ADD_COMMENT_COUNT:
+      return {
+        ...state,
+        commentCount: state.commentCount + 1
+      }
     default :
       return state
   }
