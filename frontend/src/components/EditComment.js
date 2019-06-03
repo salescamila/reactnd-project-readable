@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
-import { handleEditPost } from '../actions/posts'
-import { getComment } from '../actions/comment'
+import { getComment, handleEditComment } from '../actions/comments'
 
 class EditComment extends Component {
   state = {
     toHome: false,
-    author: '',
     body: '',
   }
   componentDidMount() {
@@ -30,7 +28,7 @@ class EditComment extends Component {
     const { body } = this.state
     const { dispatch, id, commentId } = this.props
 
-    dispatch(handleEditPost(commentId, {body}))
+    dispatch(handleEditComment(commentId, {body}))
 
     this.setState(() => ({
       body: '',
@@ -43,18 +41,18 @@ class EditComment extends Component {
     if (toHome === true) {
       return <Redirect to='/' />
     }
-
+    console.log('props...', this.props)
     return (
       <div>
         <h3 className='center'>Editar Postagem</h3>
         <form className='new-post' onSubmit={this.handleSubmit}>
-          Post:<textarea
+          Comment:<textarea
                   value={body}
                   onChange={this.handleChangeBody}
                   className='textarea'
                   name='post'
                   maxLength={500}/><br/>
-          Author: {this.props.post.author}<br/>
+          Author: {this.props.location.state.author}<br/>
           <button
             className='btn'
             type='submit'

@@ -30,7 +30,7 @@ class Comment extends Component {
       return <p>Essa comentário não existe.</p>
     }
     const {
-      author, body, deleted, parentDeleted, parentId, timestamp, voteScore
+      id, author, body, deleted, parentDeleted, parentId, timestamp, voteScore
     } = comment
 
     if ( (postId === parentId) && (!deleted) && (!parentDeleted) ){
@@ -45,7 +45,10 @@ class Comment extends Component {
             <span>Votação <button onClick={this.handleVoteUp}>Up</button>
                           <button onClick={this.handleVoteDown}>Down</button></span>
             <span>
-              <button onClick={this.handleEdit}>Edit Comment</button>
+                  <Link to={{
+                              pathname: `/editComment/${id}`,
+                              state: {author, body}
+                            }}><p className='link'>Edit Comment</p></Link>
               <button onClick={this.handleDelete}>Delete Comment</button>
             </span>
           </div>

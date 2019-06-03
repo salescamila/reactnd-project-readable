@@ -65,11 +65,10 @@ class PostPage extends Component {
                 <span>Votação <button onClick={this.handleVoteUp}>Up</button>
                               <button onClick={this.handleVoteDown}>Down</button></span>
                 <span>
-                  <Link to={`/editPost/${id}`}><p className='link'>Edit Post</p></Link>
                   <Link to={{
                               pathname: `/editPost/${id}`,
                               state: {title, body}
-                            }}><p className='link'>Edit Post w/props</p></Link>
+                            }}><p className='link'>Edit Post</p></Link>
                   <button onClick={this.handleDelete}>Delete Post</button>
                 </span>
               </div>

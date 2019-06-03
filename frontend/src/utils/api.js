@@ -113,7 +113,7 @@ export function saveComment (comment) {
 }
 
 //Get the details for a single comment
-export function getComment (commentId) {
+export function getSingleComment (commentId) {
   return Promise.all([
     _getComment(commentId),
   ]).then(([comment]) => ({
@@ -128,7 +128,11 @@ export function voteComment (commentId, vote) {
 
 //Edit the details of an existing comment
 export function editComment (commentId, comment) {
-  return _editComment(commentId, comment)
+  const formattedComment = {
+    ...comment,
+    timestamp: Date.now(),
+  }
+  return _editComment(commentId, formattedComment)
 }
 
 //Sets a comment's deleted flag to 'true'

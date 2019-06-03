@@ -1,4 +1,9 @@
-import { RECEIVE_COMMENTS, ADD_COMMENT, ADD_VOTE_COMMENT, DELETE_COMMENT } from '../actions/comments'
+import { RECEIVE_COMMENTS, 
+         RECEIVE_SINGLE_COMMENT,
+         ADD_COMMENT, 
+         ADD_VOTE_COMMENT, 
+         DELETE_COMMENT,
+         UPDATE_COMMENT } from '../actions/comments'
 
 export default function comments (state = {}, action) {
   switch(action.type) {
@@ -15,6 +20,11 @@ export default function comments (state = {}, action) {
       return {
         ...state,
         ..._comments
+      }
+    case RECEIVE_SINGLE_COMMENT:
+      return {
+        ...state,
+        ...action.singleComment
       }
     case ADD_COMMENT:
       return {
@@ -36,6 +46,10 @@ export default function comments (state = {}, action) {
           ...state[action.id],
           deleted: true
         }
+      }
+    case UPDATE_COMMENT:
+      return {
+        ...state
       }
     default :
       return state

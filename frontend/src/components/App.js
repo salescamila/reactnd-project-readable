@@ -25,7 +25,7 @@ class App extends Component {
                     <Route path='/' exact component={Dashboard} />
                     <Route path='/newPost' exact component={NewPost} />
                     <Route path='/editPost/:id' exact component={EditPost} />
-                    <Route path='/comments/:id' exact component={EditComment} />
+                    <Route path='/editComment/:id' exact component={EditComment} />
                     <Route path='/:category/:id' exact component={PostPage} />
                     <Route path='/:category' exact component={CategoryPosts} />
                   </Switch>
