@@ -3,19 +3,30 @@ import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { formatDate } from '../utils/helpers'
 import { handleVotePost } from '../actions/posts'
+import { handleVoteCategoryPost } from '../actions/categoryPosts'
 
 class Post extends Component {
   handleVoteUp = (e) => {
     e.preventDefault()
-    const { dispatch, post } = this.props
+    const { dispatch, post, dashboard } = this.props
     const {id} = post
-    dispatch(handleVotePost(id, {option: 'upVote'}))
+
+    if (dashboard) {
+      dispatch(handleVotePost(id, {option: 'upVote'}))
+    } else {
+      dispatch(handleVoteCategoryPost(id, {option: 'upVote'}))
+    }
   }
   handleVoteDown = (e) => {
     e.preventDefault()
-    const { dispatch, post } = this.props
+    const { dispatch, post, dashboard } = this.props
     const {id} = post
-    dispatch(handleVotePost(id, {option: 'downVote'}))
+
+    if (dashboard){
+      dispatch(handleVotePost(id, {option: 'downVote'}))
+    } else {
+      dispatch(handleVoteCategoryPost(id, {option: 'downVote'}))
+    }
   }
   render() {
     const { post } = this.props
@@ -47,12 +58,14 @@ class Post extends Component {
 function mapStateToProps ({posts, categoryPosts}, { id, dashboard }) {
   if ( dashboard ) {
     return{
+      dashboard,
       post: posts
         ? posts[id]
         : null
     }
   } else {
     return{
+      dashboard,
       post: categoryPosts
         ? categoryPosts[id]
         : null

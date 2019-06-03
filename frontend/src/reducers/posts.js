@@ -1,12 +1,15 @@
-import { RECEIVE_POSTS, ADD_POST, ADD_VOTE_POST, DELETE_POST } from '../actions/posts'
+import { RECEIVE_POSTS,
+         ADD_POST,
+         ADD_VOTE_POST,
+         DELETE_POST } from '../actions/posts'
 
 export default function posts (state = {}, action) {
-  let posts
+  let posts = null
+  let state_keys = null
   switch(action.type) {
     case RECEIVE_POSTS :
-      posts = null
-      const post_keys = Object.keys(action.posts)
-      post_keys.map((i)=>(
+      state_keys = Object.keys(action.posts)
+      state_keys.map((i)=>(
         posts = {
           ...posts,
           [action.posts[i].id]: action.posts[i]
@@ -30,8 +33,7 @@ export default function posts (state = {}, action) {
         }
       }
     case DELETE_POST:
-      posts = null
-      const state_keys = Object.keys(state)
+      state_keys = Object.keys(state)
       state_keys.map((i)=>(
         state[i].id !== action.id
           ? posts = {

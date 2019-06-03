@@ -5,9 +5,8 @@ import Dashboard from './Dashboard'
 import LoadingBar from 'react-redux-loading'
 import NewPost from './NewPost'
 import PostPage from './PostPage'
-import Category from './Category'
 import CategoryPosts from './CategoryPosts'
-import Nav from './Nav';
+import Nav from './Nav'
 
 class App extends Component {
   render() {
@@ -30,7 +29,7 @@ class App extends Component {
           </div>
         </Fragment>
       </Router>
-    );
+    )
   }
 }
 

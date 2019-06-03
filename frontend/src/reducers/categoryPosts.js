@@ -1,4 +1,5 @@
-import { RECEIVE_CATEGORY_POSTS } from '../actions/categoryPosts'
+import { RECEIVE_CATEGORY_POSTS,
+         ADD_VOTE_CATEGORY_POST, } from '../actions/categoryPosts'
 
 export default function categoryPosts (state = {}, action) {
   switch(action.type) {
@@ -15,6 +16,14 @@ export default function categoryPosts (state = {}, action) {
       return {
         ...state,
         ...posts
+      }
+    case ADD_VOTE_CATEGORY_POST:
+      return {
+        ...state,
+        [action.id]: {
+          ...state[action.id],
+          voteScore: state[action.id].voteScore + action.count
+        }
       }
     default :
       return state

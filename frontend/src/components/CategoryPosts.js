@@ -1,56 +1,38 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getCategoryPosts } from '../actions/categoryPosts';
+import { getCategoryPosts } from '../actions/categoryPosts'
+import { orderBy } from '../actions/order'
 import Post from './Post'
 
 class CategoryPosts extends Component {
-  state = {
-    orderBy: 'data',
-    postsIds: null,
-  }
   componentDidMount() {
     this.props.dispatch(getCategoryPosts(this.props.match.params.category))
   }
-  orderByDate = () => {
-    if (this.props.posts !== null) {
-      this.setState(() => ({
-        orderBy: 'date',
-        postsIds: Object.keys(this.props.posts).sort((a,b) => this.props.posts[b].timestamp - this.props.posts[a].timestamp)
-      }))
-    }
+  orderByTimestamp = () => {
+    this.props.dispatch(orderBy('timestamp'))
   }
   orderByScore = () => {
-    if (this.props.posts !== null) {
-      this.setState(() => ({
-        orderBy: 'score',
-        postsIds: Object.keys(this.props.posts).sort((a,b) => this.props.posts[b].voteScore - this.props.posts[a].voteScore)
-      }))
-    }
+    this.props.dispatch(orderBy('score'))
   }
   render() {
     const { category } =  this.props.match.params
-
-    if(this.state.postsIds === null) {
-      this.orderByDate()
-    }
     return (
       <div>
-        <h3>Postagens na Categoria {category}</h3>
-        {/*<div>Select a order to show the posts...</div>
-        <button
-          disabled='true'
-          className='btn'
-          type='button'
-          onClick={this.orderByDate}>
-          Order By Date
-        </button>
-        <button
-          disabled='true'
-          className='btn'
-          type='button'
-          onClick={this.orderByScore}>
-          Order By Vote Score
-        </button>*/}
+        <h3 className='center'>Postagens na Categoria {category}</h3>
+        <div className='center'>
+          <button
+            className='btn'
+            type='button'
+            onClick={this.orderByTimestamp}>
+            Order By Date
+          </button>
+          <button
+            className='btn'
+            type='button'
+            onClick={this.orderByScore}>
+            Order By Vote Score
+          </button>
+        </div>
         { this.props.postsIds === null
           ? <div>Sem postagens ainda...</div>
           : this.props.postsIds.map((id) => (
@@ -59,26 +41,30 @@ class CategoryPosts extends Component {
               : null
           ))
         }
-        {/*
-          this.state.postsIds === null
-          ? <div>Select Ordernation</div>
-          : this.state.postsIds.map((id) => (
-              <Post id={id} dashboard={false}/>
-            ))
-        */}
       </div>
     )
   }
 }
-
+function mapStateToProps ({ categoryPosts, order }, { props }) {
+  return {
+    props,
+    posts: categoryPosts
+      ? categoryPosts
+      : null,
+    postsIds: order.order === 'score'
+      ? Object.keys(categoryPosts).sort((a,b) => categoryPosts[b].voteScore - categoryPosts[a].voteScore)
+      : Object.keys(categoryPosts).sort((a,b) => categoryPosts[b].timestamp - categoryPosts[a].timestamp)
+  }
+}
+/*
 function mapStateToProps ( {categoryPosts}, {props} ) {
-    return{
+  return{
     posts: categoryPosts
       ? categoryPosts
       : null,
     postsIds: Object.keys(categoryPosts).sort((a,b) => categoryPosts[b].voteScore - categoryPosts[a].voteScore),
     props
   }
-}
+}*/
 
 export default connect(mapStateToProps)(CategoryPosts)

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-import { getCategories } from '../actions/categories';
+import { getCategories } from '../actions/categories'
 
 class Category extends Component {
   componentDidMount() {
-    this.props.dispatch(getCategories());
+    this.props.dispatch(getCategories())
   }
   render() {
     const { categories } = this.props.categories

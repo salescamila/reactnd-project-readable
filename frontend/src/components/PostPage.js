@@ -33,7 +33,7 @@ class PostPage extends Component {
     dispatch(handleVotePost(id, {option: 'downVote'}))
   }
   componentDidMount() {
-    this.props.dispatch(getPost(this.props.postId));
+    this.props.dispatch(getPost(this.props.postId))
   }
   render() {
     const {toHome } = this.state
