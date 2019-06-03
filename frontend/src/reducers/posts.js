@@ -1,7 +1,8 @@
 import { RECEIVE_POSTS,
          ADD_POST,
          ADD_VOTE_POST,
-         DELETE_POST } from '../actions/posts'
+         DELETE_POST,
+         UPDATE_POST } from '../actions/posts'
 
 export default function posts (state = {}, action) {
   let posts = null
@@ -44,6 +45,10 @@ export default function posts (state = {}, action) {
       ))
       return {
         ...posts
+      }
+    case UPDATE_POST:
+      return {
+        ...state
       }
     default :
       return state

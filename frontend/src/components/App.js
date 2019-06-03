@@ -7,6 +7,7 @@ import NewPost from './NewPost'
 import PostPage from './PostPage'
 import CategoryPosts from './CategoryPosts'
 import Nav from './Nav'
+import EditPost from './EditPost'
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
                  <Switch>
                     <Route path='/' exact component={Dashboard} />
                     <Route path='/newPost' exact component={NewPost} />
+                    <Route path='/editPost/:id' exact component={EditPost} />
                     <Route path='/:category/:id' exact component={PostPage} />
                     <Route path='/:category' exact component={CategoryPosts} />
                   </Switch>
