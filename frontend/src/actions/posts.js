@@ -49,7 +49,6 @@ export function removePost(postId) {
 export function getPosts () {
   return (dispatch) => {
     dispatch(showLoading())
-
     return getAllPosts()
       .then(({ posts }) => {
         dispatch(receivePosts(posts))
@@ -66,7 +65,6 @@ export function getPosts () {
 export function getCategoryPosts (path) {
   return (dispatch) => {
     dispatch(showLoading())
-
     return getCategory(path)
       .then(({ posts }) => {
         dispatch(receivePosts(posts))
@@ -83,7 +81,6 @@ export function getCategoryPosts (path) {
 export function handleAddPost (postToAdd) {
   return (dispatch) => {
     dispatch(showLoading())
-
     return savePost(postToAdd)
       .then((post) => {
         dispatch(addPost(post))
@@ -95,8 +92,6 @@ export function handleAddPost (postToAdd) {
 export function handleEditPost (postId, postToEdit) {
   return (dispatch) => {
     dispatch(showLoading())
-    console.log('postId...', postId)
-    console.log('postToEdit...', postToEdit)
     return editPost(postId, postToEdit)
       .then((post) => {
         dispatch(updatePost(post))

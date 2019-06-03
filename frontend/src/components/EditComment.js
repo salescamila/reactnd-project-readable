@@ -41,7 +41,7 @@ class EditComment extends Component {
     if (toHome === true) {
       return <Redirect to='/' />
     }
-    console.log('props...', this.props)
+    
     return (
       <div>
         <h3 className='center'>Editar Postagem</h3>
